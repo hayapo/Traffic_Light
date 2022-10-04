@@ -21,39 +21,45 @@ public class PracticeControl : MonoBehaviour
     void Start()
     {
         i = 0;
+        Debug.Log("Steps Start!!!");
     }
 
     // Update is called once per frame
     void Update()
     {
         timer += Time.deltaTime;
-
+        
         if (i == 10)
         {
             Debug.Log("Step Ended");
             Application.Quit();
         }
 
-        if (timer < 5f)
+        if (timer < 3f)
         {
             LightRed.GetComponent<MeshRenderer>().material = RedOff;
             LightGreen.GetComponent<MeshRenderer>().material = GreenOff;
         }
-        if (timer >= 5f && timer < 10f)
+        if (timer >= 3f && timer < 8f)
         {
             LightRed.GetComponent<MeshRenderer>().material = RedOn;
             LightGreen.GetComponent<MeshRenderer>().material = GreenOff;
         }
-        if (timer >= 10f && timer < 15f)
+        if (timer >= 8f && timer < 13f)
         {
             LightRed.GetComponent<MeshRenderer>().material = RedOff;
             LightGreen.GetComponent<MeshRenderer>().material = GreenOn;
             Subject.transform.position += transform.forward * speed * Time.deltaTime;
         }
-        if (timer > 15f)
+        if (timer >= 13f)
+        {
+            Subject.transform.position = new Vector3(0, 0, 0);
+            LightRed.GetComponent<MeshRenderer>().material = RedOn;
+            LightGreen.GetComponent<MeshRenderer>().material = GreenOff;
+        }
+        if (timer > 16f)
         {
             timer = 0f;
-            Subject.transform.position = new Vector3(0, 0, 0);
             i++;
             Debug.Log("Step " + i + " ended");
         }
