@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 using UnityEngine.SceneManagement;
 
 public class ControlScenes : MonoBehaviour
@@ -21,6 +22,11 @@ public class ControlScenes : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A))
         {
             SceneManager.LoadScene("BeforeActual");
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            EditorApplication.isPlaying = false;
+            Application.Quit();
         }
     }
 }

@@ -254,25 +254,8 @@ MonoBehaviour:
   GreenOn: {fileID: 2100000, guid: 055f20bd151c86a49885c2b72ecaa9eb, type: 2}
   GreenOff: {fileID: 8984458609270476399, guid: b0a40d57ad6e0d042b1fc4b9cbf022f6,
     type: 3}
---- !u!1 &1637302710 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6479186714930940858, guid: 81fea1f32f421ec4bafcbb9fa85eea97,
-    type: 3}
-  m_PrefabInstance: {fileID: 1912469058}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1637302721
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1637302710}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e3247d2e37e253418e4a01a4f8f21ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 100
+  speed: 80
+  WAIT_SECOND_LIST: []
 --- !u!1001 &1912469058
 PrefabInstance:
   m_ObjectHideFlags: 0

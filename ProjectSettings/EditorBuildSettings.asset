@@ -6,19 +6,19 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/ExpScene/Scenes/PracticeStep.unity
+    path: Assets/Traffic_Exp/Scenes/PracticeStep.unity
     guid: 2b48ed0d2050c2e4c97013b32c8e0a50
   - enabled: 1
-    path: Assets/ExpScene/Scenes/ActualStep.unity
+    path: Assets/Traffic_Exp/Scenes/ActualStep.unity
     guid: 59f860edefa639c48825ab1bb8c90f81
   - enabled: 1
-    path: Assets/ExpScene/Scenes/BeforePractice.unity
+    path: Assets/Traffic_Exp/Scenes/BeforePractice.unity
     guid: 86092114b4b559043a75725072fad958
   - enabled: 1
-    path: Assets/ExpScene/Scenes/BeforeActual.unity
+    path: Assets/Traffic_Exp/Scenes/BeforeActual.unity
     guid: 0b9c31216c4c1744eb06520879ac0891
   - enabled: 1
-    path: Assets/ExpScene/Scenes/MidStep.unity
+    path: Assets/Traffic_Exp/Scenes/MidStep.unity
     guid: 06edd2d6153c74a44882599e185f3294
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260,
