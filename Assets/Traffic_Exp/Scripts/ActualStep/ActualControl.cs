@@ -30,7 +30,6 @@ public class ActualControl : MonoBehaviour
         }
         Debug.Log("Wait Ended");
         yield return new WaitForSeconds(3);
-        Debug.Log("Start Loop");
         StartCoroutine(LoopExp());
     }
 
@@ -38,7 +37,7 @@ public class ActualControl : MonoBehaviour
     {
         timer = 0f;
         WAIT_SECOND_LIST = new float[] { 8.0f, 6.0f, 6.0f, 7.0f, 5.0f, 7.0f, 7.0f, 5.0f, 5.0f, 7.0f, 9.0f, 9.0f, 9.0f, 8.0f, 6.0f, 5.0f, 6.0f, 8.0f, 9.0f, 8.0f };
-
+        Debug.Log("Start Loops");
         for (int i = 1; i <= 20; i++)
         {
             timer = 0f;
