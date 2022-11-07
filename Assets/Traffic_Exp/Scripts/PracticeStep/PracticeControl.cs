@@ -113,47 +113,4 @@ public class PracticeControl : MonoBehaviour
         Debug.Log("Steps Finished Time: " + AllStepsEndedTimeText);
         SceneManager.LoadScene("MidStep");
     }
-
-    // Update is called once per frame
-    //private void Update()
-    //{
-    //    timer += Time.deltaTime;
-
-    //    if (i == 10)
-    //    {
-    //        Debug.Log("Step Ended");
-    //        EditorApplication.isPlaying = false;
-    //        Application.Quit();
-    //    }
-
-    //    if (timer < 3f)
-    //    {
-    //        LightRed.GetComponent<MeshRenderer>().material = RedOff;
-    //        LightGreen.GetComponent<MeshRenderer>().material = GreenOff;
-    //    }
-    //    if (timer >= 3f && timer < 8f)
-    //    {
-    //        LightRed.GetComponent<MeshRenderer>().material = RedOn;
-    //        LightGreen.GetComponent<MeshRenderer>().material = GreenOff;
-    //    }
-    //    if (timer >= 8f && timer < 13f)
-    //    {
-    //        LightRed.GetComponent<MeshRenderer>().material = RedOff;
-    //        LightGreen.GetComponent<MeshRenderer>().material = GreenOn;
-    //        Subject.transform.position += transform.forward * speed * Time.deltaTime;
-    //    }
-    //    if (timer >= 13f)
-    //    {
-    //        Subject.transform.position = new Vector3(0, 0, 0);
-    //        LightRed.GetComponent<MeshRenderer>().material = RedOn;
-    //        LightGreen.GetComponent<MeshRenderer>().material = GreenOff;
-    //    }
-    //    if (timer > 16f)
-    //    {
-    //        Debug.Log("time: " + timer);
-    //        timer = 0f;
-    //        i++;
-    //        Debug.Log("Step " + i + " ended");
-    //    }
-    //}
 }
