@@ -15,7 +15,8 @@ public class PracticeControl : MonoBehaviour
     public Material GreenOn;
     public Material GreenOff;
     private float timer;
-    private float startTime, distance;
+    private float startTime, distance, totalDuration;
+    private int stepCount;
     private Vector3 startPosition, targetPosition;
     public float speed;
     private float totaltime;
@@ -84,7 +85,7 @@ public class PracticeControl : MonoBehaviour
                 else if (timer >= 13.0f)
                 {
                     Subject.transform.position = new Vector3(0, 0, 0);
-                    LightRed.GetComponent<MeshRenderer>().material = RedOn;
+                    LightRed.GetComponent<MeshRenderer>().material = RedOff;
                     LightGreen.GetComponent<MeshRenderer>().material = GreenOff;
                 }
 
