@@ -15,7 +15,7 @@ public class PracticeControl : MonoBehaviour
     public Material GreenOn;
     public Material GreenOff;
     private float timer;
-    private float startTime, distance, totalDuration;
+    private float startTime, distance;
     private int stepCount;
     private Vector3 startPosition, targetPosition;
     public float speed;
@@ -53,36 +53,39 @@ public class PracticeControl : MonoBehaviour
 
         timer = 0f;
         totaltime = 0f;
+
         Debug.Log("Start Loops");
-        for (int i = 1; i <= 10; i++) {
+        for (int i = 1; i <= 10; i++)
+        {
             StepEndedTimeText = "";
 
             timer = 0f;
-            Debug.Log("Step "  + i + " Started");
-            while (timer < 16.0f)
+            Debug.Log("===== Step "  + i + " Started =====");
+            while (timer < 12.0f)
             {
                 yield return new WaitForFixedUpdate();
                 timer += Time.deltaTime;
-                if (timer < 3.0f)
+
+                if (timer < 2.0f)
                 {
                     LightRed.GetComponent<MeshRenderer>().material = RedOff;
                     LightGreen.GetComponent<MeshRenderer>().material = GreenOff;
                 }
 
-                else if (timer >= 3.0f && timer < 8.0f)
+                else if (timer >= 2.0f && timer < 7.0f)
                 {
                     LightRed.GetComponent<MeshRenderer>().material = RedOn;
                     LightGreen.GetComponent<MeshRenderer>().material = GreenOff;
                 }
 
-                else if (timer >= 8.0f && timer < 13.0f)
+                else if (timer >= 7.0f && timer < 10.0f)
                 {
                     LightRed.GetComponent<MeshRenderer>().material = RedOff;
                     LightGreen.GetComponent<MeshRenderer>().material = GreenOn;
                     Subject.transform.position += transform.forward * speed * Time.deltaTime;
                 }
 
-                else if (timer >= 13.0f)
+                else if (timer >= 10.0f)
                 {
                     Subject.transform.position = new Vector3(0, 0, 0);
                     LightRed.GetComponent<MeshRenderer>().material = RedOff;
@@ -93,7 +96,6 @@ public class PracticeControl : MonoBehaviour
             }
             totaltime += timer;
             Debug.Log("time: " + timer);
-            Debug.Log("Step " + i + " ended");
 
             StepEndedTime = DateTime.Now;
             StepEndedTimeText =
@@ -101,7 +103,9 @@ public class PracticeControl : MonoBehaviour
                 StepEndedTime.Minute.ToString() + ":" +
                 StepEndedTime.Second.ToString() + ":" +
                 StepEndedTime.Millisecond.ToString();
+
             Debug.Log("Step Ended Time: " + StepEndedTimeText);
+            Debug.Log("===== Step " + i + " ended =====");
         }
         Debug.Log("Practice Step Ended");
         Debug.Log("Total Time: " +  totaltime);
