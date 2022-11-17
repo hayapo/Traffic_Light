@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.SceneManagement;
 using System;
+using System.IO;
 
 public class PracticeControl : MonoBehaviour
 {
@@ -20,7 +21,7 @@ public class PracticeControl : MonoBehaviour
     private Vector3 startPosition, targetPosition;
     public float speed;
     private float totaltime;
-    private string StepEndedTimeText;
+    private string StepEndedTimeText, StepStartTimeText;
     private string AllStepsEndedTimeText;
 
     // Start is called before the first frame update
@@ -49,18 +50,31 @@ public class PracticeControl : MonoBehaviour
     private IEnumerator LoopExp()
     {
         DateTime StepEndedTime;
+        DateTime StepStartTime;
         DateTime AllStepsEndedTime;
 
         timer = 0f;
         totaltime = 0f;
 
+        List<string> startTimeList = new List<string> ();
+
         Debug.Log("Start Loops");
         for (int i = 1; i <= 10; i++)
         {
+            StepStartTimeText = "";
             StepEndedTimeText = "";
 
             timer = 0f;
             Debug.Log("===== Step "  + i + " Started =====");
+
+            StepStartTime = DateTime.Now;
+            StepStartTimeText =
+                StepStartTime.Hour.ToString() + ":" +
+                StepStartTime.Minute.ToString() + ":" +
+                StepStartTime.Second.ToString() + ":" +
+                StepStartTime.Millisecond.ToString();
+            startTimeList.Add(StepStartTimeText);
+
             while (timer < 12.0f)
             {
                 yield return new WaitForFixedUpdate();
@@ -107,6 +121,7 @@ public class PracticeControl : MonoBehaviour
             Debug.Log("Step Ended Time: " + StepEndedTimeText);
             Debug.Log("===== Step " + i + " ended =====");
         }
+
         Debug.Log("Practice Step Ended");
         Debug.Log("Total Time: " +  totaltime);
         AllStepsEndedTime = DateTime.Now;
@@ -115,6 +130,9 @@ public class PracticeControl : MonoBehaviour
             AllStepsEndedTime.Minute.ToString() + ":" +
             AllStepsEndedTime.Second.ToString() + ":" +
             AllStepsEndedTime.Millisecond.ToString();
+
+        string start_time_file = @"C:\Gitproject\Traffic_Light_Time\test_2\subject_3\practice\start_time.txt";
+        File.WriteAllLines(start_time_file, startTimeList);
         Debug.Log("Steps Finished Time: " + AllStepsEndedTimeText);
         SceneManager.LoadScene("MidStep");
     }

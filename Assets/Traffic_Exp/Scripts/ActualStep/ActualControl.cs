@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.SceneManagement;
 using System;
+using System.IO;
+
 
 public class ActualControl : MonoBehaviour
 {
@@ -17,8 +19,7 @@ public class ActualControl : MonoBehaviour
     private float timer;
     private float startTime, distance;
     private float totaltime;
-    private string StepEndedTimeText;
-    private string AllStepsEndedTimeText;
+    private string StepEndedTimeText, StepStartTimeText, AllStepsEndedTimeText;
     //private Vector3 startPosition, targetPosition;
     public float speed;
     public float[] WAIT_SECOND_LIST;
@@ -48,6 +49,7 @@ public class ActualControl : MonoBehaviour
     private IEnumerator LoopExp()
     {
         DateTime StepEndedTime;
+        DateTime StepStartTime;
         DateTime AllStepsEndedTime;
 
         timer = 0f;
@@ -56,6 +58,8 @@ public class ActualControl : MonoBehaviour
         // [6, 9, 9, 5, 6, 8, 5, 7, 8, 7]
         WAIT_SECOND_LIST = new float[] { 6.0f, 9.0f, 9.0f, 5.0f, 6.0f, 8.0f, 5.0f, 7.0f, 8.0f, 7.0f };
         int stepCount = 0;
+
+        List<string> startTimeList = new List<string>();
 
         Debug.Log("Start Loops");
         for (int i = 0; i < 10; i++)
@@ -69,6 +73,15 @@ public class ActualControl : MonoBehaviour
             float current_green_time = current_red_time + 3.0f;
 
             Debug.Log("===== Step " + stepCount + " Started =====");
+
+            StepStartTime = DateTime.Now;
+            StepStartTimeText =
+                StepStartTime.Hour.ToString() + ":" +
+                StepStartTime.Minute.ToString() + ":" +
+                StepStartTime.Second.ToString() + ":" +
+                StepStartTime.Millisecond.ToString();
+            startTimeList.Add(StepStartTimeText);
+
             while (timer < current_wait_second)
             {
                 yield return new WaitForFixedUpdate();
@@ -124,6 +137,7 @@ public class ActualControl : MonoBehaviour
             Debug.Log("Step Ended Time: " + StepEndedTimeText);
             Debug.Log("===== Step " + stepCount + " ended =====");
         }
+
         Debug.Log("Practice Step Ended");
         Debug.Log("Total Time: " + totaltime);
         AllStepsEndedTime = DateTime.Now;
@@ -133,6 +147,10 @@ public class ActualControl : MonoBehaviour
             AllStepsEndedTime.Second.ToString() + ":" +
             AllStepsEndedTime.Millisecond.ToString();
         Debug.Log("Steps Finished Time: " + AllStepsEndedTimeText);
+
+        string start_time_file = @"C:\Gitproject\Traffic_Light_Time\test_2\subject_3\actual\start_time.txt";
+        File.WriteAllLines(start_time_file, startTimeList);
+
         EditorApplication.isPlaying = false;
         Application.Quit();
     }
