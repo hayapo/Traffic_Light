@@ -7,7 +7,7 @@ using System;
 using System.IO;
 using System.Linq;
 
-public class ControlExp : MonoBehaviour
+public class noCueControl : MonoBehaviour
 {
     public GameObject fixationCross;
     public GameObject Crossings;
@@ -44,7 +44,7 @@ public class ControlExp : MonoBehaviour
 
         Debug.Log("Wait for Start");
 
-        while (!Input.GetKeyDown(KeyCode.F))
+        while (!Input.GetKeyDown(KeyCode.S))
         {
             yield return null;
         }
@@ -76,7 +76,7 @@ public class ControlExp : MonoBehaviour
 
             timer = 0f;
             totalTime = 0;
-
+            
             if (i % eachBlockTaskAmount == 0)
             {
                 currentBlock += 1;
@@ -94,9 +94,10 @@ public class ControlExp : MonoBehaviour
             }
 
             fixationCross.SetActive(false);
-
+            Crossings.SetActive(true);
+            Sidewalks.SetActive(true);
             Debug.Log("Rest Start");
-            while (!Input.GetKeyDown(KeyCode.F))
+            while (!Input.GetKeyDown(KeyCode.Keypad5))  
             {
                 timer += Time.deltaTime;
                 keyEventList.Add(0);
@@ -119,8 +120,6 @@ public class ControlExp : MonoBehaviour
                 timer += Time.deltaTime;
                 Debug.Log(timer);
                 keyEventList.Add(0);
-                Crossings.SetActive(true);
-                Sidewalks.SetActive(true);
 
                 if (i+1 == PROBE_TRIAL_LIST[currentBlock-1])
                 {

@@ -75,7 +75,7 @@ public class PracticeControl : MonoBehaviour
                 StepStartTime.Millisecond.ToString();
             startTimeList.Add(StepStartTimeText);
 
-            while (timer < 12.0f)
+            while (timer < 8.0f)
             {
                 yield return new WaitForFixedUpdate();
                 timer += Time.deltaTime;
@@ -86,20 +86,20 @@ public class PracticeControl : MonoBehaviour
                     LightGreen.GetComponent<MeshRenderer>().material = GreenOff;
                 }
 
-                else if (timer >= 2.0f && timer < 7.0f)
+                else if (timer >= 2.0f && timer < 5.0f)
                 {
                     LightRed.GetComponent<MeshRenderer>().material = RedOn;
                     LightGreen.GetComponent<MeshRenderer>().material = GreenOff;
                 }
 
-                else if (timer >= 7.0f && timer < 10.0f)
+                else if (timer >= 5.0f && timer < 8.0f)
                 {
                     LightRed.GetComponent<MeshRenderer>().material = RedOff;
                     LightGreen.GetComponent<MeshRenderer>().material = GreenOn;
                     Subject.transform.position += transform.forward * speed * Time.deltaTime;
                 }
 
-                else if (timer >= 10.0f)
+                else if (timer >= 8.0f)
                 {
                     Subject.transform.position = new Vector3(0, 0, 0);
                     LightRed.GetComponent<MeshRenderer>().material = RedOff;

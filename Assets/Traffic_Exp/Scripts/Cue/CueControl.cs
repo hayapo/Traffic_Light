@@ -7,7 +7,7 @@ using System;
 using System.IO;
 using System.Linq;
 
-public class ActualControl : MonoBehaviour
+public class CueControl : MonoBehaviour
 {
     public GameObject LightRed;
     public GameObject LightGreen;
