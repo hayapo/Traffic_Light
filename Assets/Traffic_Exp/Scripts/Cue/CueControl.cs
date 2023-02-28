@@ -9,9 +9,13 @@ using System.Linq;
 
 public class CueControl : MonoBehaviour
 {
+    public GameObject fixationCross;
+    public GameObject TrafficLight;
+    public GameObject Crossings;
+    public GameObject Sidewalks;
+    public GameObject Subject;
     public GameObject LightRed;
     public GameObject LightGreen;
-    public GameObject Subject;
     public Material RedOn;
     public Material RedOff;
     public Material GreenOn;
@@ -43,6 +47,10 @@ public class CueControl : MonoBehaviour
 
         LightRed.GetComponent<MeshRenderer>().material = RedOff;
         LightGreen.GetComponent<MeshRenderer>().material = GreenOff;
+        fixationCross.SetActive(false);
+        TrafficLight.SetActive(false);
+        Crossings.SetActive(false);
+        Sidewalks.SetActive(false);
         AllStepsEndedTimeText = "";
 
         Debug.Log("Wait for Start");
@@ -81,6 +89,10 @@ public class CueControl : MonoBehaviour
             Subject.transform.position = new Vector3(0, 0, 0);
             LightRed.GetComponent<MeshRenderer>().material = RedOff;
             LightGreen.GetComponent<MeshRenderer>().material = GreenOff;
+            fixationCross.SetActive(false);
+            TrafficLight.SetActive(false);
+            Crossings.SetActive(false);
+            Sidewalks.SetActive(false);
 
             if (i % eachBlockTaskAmount == 0)
             {
@@ -109,6 +121,10 @@ public class CueControl : MonoBehaviour
                 {
                     LightRed.GetComponent<MeshRenderer>().material = RedOff;
                     LightGreen.GetComponent<MeshRenderer>().material = GreenOff;
+                    fixationCross.SetActive(true);
+                    TrafficLight.SetActive(false);
+                    Crossings.SetActive(false);
+                    Sidewalks.SetActive(false);
                 }
 
                 else if (timer >= 1.996f && timer <= 2.004f)
@@ -118,8 +134,13 @@ public class CueControl : MonoBehaviour
 
                 else if (timer >= 2.0f && timer < current_red_time)
                 {
+                    TrafficLight.SetActive(true);
+                    Crossings.SetActive(true);
+                    Sidewalks.SetActive(true);
                     LightRed.GetComponent<MeshRenderer>().material = RedOn;
                     LightGreen.GetComponent<MeshRenderer>().material = GreenOff;
+                    fixationCross.SetActive(false);
+
                 }
 
                 else if (timer >= current_red_time - 0.004f && timer <= current_red_time + 0.004f)
@@ -132,12 +153,11 @@ public class CueControl : MonoBehaviour
                     LightRed.GetComponent<MeshRenderer>().material = RedOff;
                     LightGreen.GetComponent<MeshRenderer>().material = GreenOn;
 
-                    if (i + 1 == PROBE_TRIAL_LIST[currentBlock - 1])
+                    if (i + 1 != PROBE_TRIAL_LIST[currentBlock - 1])
                     {
                         if (isForwardFrame)
                         {
                             yield return new WaitForSeconds(feedbackDelay);
-                            // timer += feedbackDelay;
                             isForwardFrame = false;
                         }
                     Subject.transform.position += transform.forward * speed * Time.deltaTime;
@@ -148,13 +168,6 @@ public class CueControl : MonoBehaviour
                 {
                     Debug.Log("Lights Off");
                 }
-
-                //else if (timer >= current_green_time)
-                //{
-                //    Subject.transform.position = new Vector3(0, 0, 0);
-                //    LightRed.GetComponent<MeshRenderer>().material = RedOff;
-                //    LightGreen.GetComponent<MeshRenderer>().material = GreenOff;
-                //}
             }
             totaltime += timer;
             Debug.Log("time: " + timer);
@@ -172,6 +185,7 @@ public class CueControl : MonoBehaviour
 
         Debug.Log("Practice Step Ended");
         Debug.Log("Total Time: " + totaltime);
+
         AllStepsEndedTime = DateTime.Now;
         AllStepsEndedTimeText =
             AllStepsEndedTime.Hour.ToString() + ":" +

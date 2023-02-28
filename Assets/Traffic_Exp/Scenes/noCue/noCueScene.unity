@@ -180,6 +180,10 @@ MonoBehaviour:
   eachBlockTaskAmount: 6
   blockAmount: 5
   speed: 60
+  isTest: 1
+  ExpNumber: 1
+  TestNumber: 3
+  SubjectNumber: 1
 --- !u!1 &1373576342
 GameObject:
   m_ObjectHideFlags: 0
