@@ -33,6 +33,11 @@ public class CueControl : MonoBehaviour
     private string StepEndedTimeText, StepStartTimeText, AllStepsEndedTimeText;
     private bool isForwardFrame;
 
+    public bool isTest;
+    public int ExpNumber;
+    public int TestNumber;
+    public int SubjectNumber;
+
     // [6, 9, 9, 5, 6, 8, 5, 7, 8, 7]
     //private float[] WAIT_SECOND_LIST = new float[] { 6.0f, 9.0f, 9.0f, 5.0f, 6.0f, 8.0f, 5.0f, 7.0f, 8.0f, 7.0f };
     private float[] WAIT_SECOND_LIST = Enumerable.Repeat(3.0f, 30).ToArray();
@@ -194,8 +199,28 @@ public class CueControl : MonoBehaviour
             AllStepsEndedTime.Millisecond.ToString();
         Debug.Log("Steps Finished Time: " + AllStepsEndedTimeText);
 
-        string start_time_file = @"C:\Gitproject\Traffic_Light_Time\test_2\subject_3\actual\start_time.txt";
-        File.WriteAllLines(start_time_file, startTimeList);
+        string StartTime_file_path = "";
+
+        if (isTest)
+        {
+            StartTime_file_path = $@"C:\Gitproject\Traffic_Light\Exp_Event_Record\exp_{ExpNumber}\test_{TestNumber}\subject_{SubjectNumber}\";
+        }
+        else
+        {
+            StartTime_file_path = $@"C:\Gitproject\Traffic_Light\Exp_Event_Record\exp_{ExpNumber}\subject_{SubjectNumber}\";
+        }
+
+        string StartTime_file_name = "KeyEventAllTime.txt";
+
+        Debug.Log(StartTime_file_path + StartTime_file_name);
+
+        using (StreamWriter sw = new StreamWriter(StartTime_file_path + StartTime_file_name, false))
+        {
+            foreach (var line in startTimeList)
+            {
+                sw.WriteLine(line);
+            }
+        }
 
         EditorApplication.isPlaying = false;
         Application.Quit();

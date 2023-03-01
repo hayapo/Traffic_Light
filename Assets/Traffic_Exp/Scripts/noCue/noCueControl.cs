@@ -46,7 +46,7 @@ public class noCueControl : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.J) && isRest)
+        if (Input.GetKeyDown(KeyCode.Keypad5) && isRest)
         {
             isKeyDown = true;
         }
@@ -129,7 +129,7 @@ public class noCueControl : MonoBehaviour
             Debug.Log("Rest Start");
             isRest = true;
 
-            //while (!Input.GetKeyDown(KeyCode.J)) // Keypad5
+            //while (!Input.GetKeyDown(Keypad5)) // Keypad5
             //{
             //    timer += Time.deltaTime;
             //    keyEventListAll.Add("0");
@@ -206,10 +206,10 @@ public class noCueControl : MonoBehaviour
         
         if (isTest)
         {
-            KeyEvent_file_path = $@"C:\Users\hayat\GitProjects\TrafficLightExp\Exp_Event_Record\exp_{ExpNumber}\test_{TestNumber}\subject_{SubjectNumber}\";
+            KeyEvent_file_path = $@"C:\Gitproject\Traffic_Light\Exp_Event_Record\exp_{ExpNumber}\test_{TestNumber}\subject_{SubjectNumber}\";
         } else
         {
-            KeyEvent_file_path = $@"C:\Users\hayat\GitProjects\TrafficLightExp\Exp_Event_Record\exp_{ExpNumber}\subject_{SubjectNumber}\";
+            KeyEvent_file_path = $@"C:\Gitproject\Traffic_Light\Exp_Event_Record\exp_{ExpNumber}\subject_{SubjectNumber}\";
         }
         
         string KeyEvent_file_name = "KeyEventAllTime.txt";
