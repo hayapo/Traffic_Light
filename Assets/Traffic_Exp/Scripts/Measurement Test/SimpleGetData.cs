@@ -20,11 +20,13 @@ public class SimpleGetData : MonoBehaviour
             BoardShim.enable_dev_board_logger();
 
             BrainFlowInputParams input_params = new BrainFlowInputParams();
-            int board_id = (int)BoardIds.SYNTHETIC_BOARD;
-            board_shim = new BoardShim(board_id, input_params);
+            int synthetic_board_id = (int)BoardIds.SYNTHETIC_BOARD;
+            int cyton_board_id = (int)BoardIds.CYTON_BOARD;
+            input_params.serial_port = "COM11";
+            board_shim = new BoardShim(cyton_board_id, input_params);
             board_shim.prepare_session();
             board_shim.start_stream(450000, "file://brainflow_data.csv:w");
-            sampling_rate = BoardShim.get_sampling_rate(board_id);
+            sampling_rate = BoardShim.get_sampling_rate(cyton_board_id);
             Debug.Log("Brainflow streaming was started");
         }
         catch (BrainFlowError e)

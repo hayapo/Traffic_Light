@@ -3,7 +3,12 @@ guid: 711d49ddb2d0d6244b0c79f38baa8f3e
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - fixationCross: {fileID: 7176974191422878347, guid: 0f22a070f374b084abffc8a4d66f9cea,
+      type: 3}
+  - Crossings: {instanceID: 0}
+  - Sidewalks: {instanceID: 0}
+  - Subject: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
