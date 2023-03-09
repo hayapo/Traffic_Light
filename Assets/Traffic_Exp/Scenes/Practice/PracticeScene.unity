@@ -367,8 +367,8 @@ MeshRenderer:
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
@@ -501,7 +501,7 @@ Light:
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
+  m_CookieSize: 1
   m_Shadows:
     m_Type: 0
     m_Resolution: -1
@@ -534,9 +534,9 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -555,7 +555,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1486534152}
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: -23.72, y: 9.35, z: 2.45}
+  m_LocalPosition: {x: -18, y: 167, z: 127}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -698,7 +698,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1870715085}
-  - component: {fileID: 1870715084}
+  - component: {fileID: 1870715086}
   m_Layer: 0
   m_Name: Control
   m_TagString: Untagged
@@ -706,35 +706,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1870715084
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1870715083}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c5bf265fd8af1b459f75d3a6b2e57ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Fixation: {fileID: 165482785}
-  TrafficLight: {fileID: 1389280554}
-  Crossings: {fileID: 204748619}
-  Sidewalks: {fileID: 3876695861523324950}
-  Subject: {fileID: 1912469059}
-  LightRed: {fileID: 1684662761}
-  LightGreen: {fileID: 1684662760}
-  RedOn: {fileID: 2100000, guid: 5e6203e4552074b47820e2b731bb57dd, type: 2}
-  RedOff: {fileID: -956215525701561327, guid: b0a40d57ad6e0d042b1fc4b9cbf022f6, type: 3}
-  GreenOn: {fileID: 2100000, guid: 055f20bd151c86a49885c2b72ecaa9eb, type: 2}
-  GreenOff: {fileID: 8984458609270476399, guid: b0a40d57ad6e0d042b1fc4b9cbf022f6,
-    type: 3}
-  eachBlockTaskAmount: 6
-  blockAmount: 5
-  speed: 60
-  ExpNumber: 1
-  SubjectNumber: -1
 --- !u!4 &1870715085
 Transform:
   m_ObjectHideFlags: 0
@@ -750,6 +721,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1870715086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870715083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2cd54e7b0c89fa4bb6002cb5413e712, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Fixation: {fileID: 165482785}
+  TrafficLight: {fileID: 1389280554}
+  Crossings: {fileID: 204748619}
+  Sidewalks: {fileID: 3876695861523324950}
+  Ground: {fileID: 2045900100}
+  Subject: {fileID: 1912469059}
+  LightRed: {fileID: 1684662761}
+  LightGreen: {fileID: 1684662760}
+  RedOn: {fileID: 2100000, guid: 5e6203e4552074b47820e2b731bb57dd, type: 2}
+  RedOff: {fileID: -956215525701561327, guid: b0a40d57ad6e0d042b1fc4b9cbf022f6, type: 3}
+  GreenOn: {fileID: 2100000, guid: 055f20bd151c86a49885c2b72ecaa9eb, type: 2}
+  GreenOff: {fileID: 8984458609270476399, guid: b0a40d57ad6e0d042b1fc4b9cbf022f6,
+    type: 3}
+  speed: 60
 --- !u!1001 &1912469058
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -850,6 +847,12 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6479186714930940858, guid: 81fea1f32f421ec4bafcbb9fa85eea97,
     type: 3}
   m_PrefabInstance: {fileID: 1912469058}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2045900100 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3876695861798162084, guid: c0f28644b24d2d44c8635696a580f5d4,
+    type: 3}
+  m_PrefabInstance: {fileID: 3876695861523324948}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2132802847
 GameObject:

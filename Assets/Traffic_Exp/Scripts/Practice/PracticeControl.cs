@@ -8,30 +8,38 @@ using System.IO;
 
 public class PracticeControl : MonoBehaviour
 {
+    public GameObject Fixation;
+    public GameObject TrafficLight;
+    public GameObject Crossings;
+    public GameObject Sidewalks;
+    public GameObject Ground;
+    public GameObject Subject;
     public GameObject LightRed;
     public GameObject LightGreen;
-    public GameObject Subject;
     public Material RedOn;
     public Material RedOff;
     public Material GreenOn;
     public Material GreenOff;
+
     private float timer;
     private float startTime, distance;
     private int stepCount;
     private Vector3 startPosition, targetPosition;
     public float speed;
     private float totaltime;
-    private string StepEndedTimeText, StepStartTimeText;
-    private string AllStepsEndedTimeText;
 
     // Start is called before the first frame update
     private IEnumerator Start()
     {
-        Debug.Log("Practice Scene Start");
+        Debug.Log("Practice Start");
 
         LightRed.GetComponent<MeshRenderer>().material = RedOff;
         LightGreen.GetComponent<MeshRenderer>().material = GreenOff;
-        AllStepsEndedTimeText = "";
+        Fixation.SetActive(false);
+        TrafficLight.SetActive(false);
+        Crossings.SetActive(false);
+        Sidewalks.SetActive(false);
+        Ground.SetActive(false);
 
         Debug.Log("Wait for Start");
 
@@ -49,31 +57,24 @@ public class PracticeControl : MonoBehaviour
 
     private IEnumerator LoopExp()
     {
-        DateTime StepEndedTime;
-        DateTime StepStartTime;
-        DateTime AllStepsEndedTime;
-
         timer = 0f;
         totaltime = 0f;
-
-        List<string> startTimeList = new List<string> ();
 
         Debug.Log("Start Loops");
         for (int i = 1; i <= 10; i++)
         {
-            StepStartTimeText = "";
-            StepEndedTimeText = "";
-
             timer = 0f;
-            Debug.Log("===== Step "  + i + " Started =====");
 
-            StepStartTime = DateTime.Now;
-            StepStartTimeText =
-                StepStartTime.Hour.ToString() + ":" +
-                StepStartTime.Minute.ToString() + ":" +
-                StepStartTime.Second.ToString() + ":" +
-                StepStartTime.Millisecond.ToString();
-            startTimeList.Add(StepStartTimeText);
+            Subject.transform.position = new Vector3(0, 0, 0);
+            LightRed.GetComponent<MeshRenderer>().material = RedOff;
+            LightGreen.GetComponent<MeshRenderer>().material = GreenOff;
+            Fixation.SetActive(false);
+            TrafficLight.SetActive(false);
+            Crossings.SetActive(false);
+            Sidewalks.SetActive(false);
+            Ground.SetActive(false);
+
+            Debug.Log("===== Step "  + i + " Started =====");
 
             while (timer < 8.0f)
             {
@@ -82,12 +83,22 @@ public class PracticeControl : MonoBehaviour
 
                 if (timer < 2.0f)
                 {
+                    Fixation.SetActive(true);
+                    TrafficLight.SetActive(false);
+                    Crossings.SetActive(false);
+                    Sidewalks.SetActive(false);
+                    Ground.SetActive(false);
                     LightRed.GetComponent<MeshRenderer>().material = RedOff;
                     LightGreen.GetComponent<MeshRenderer>().material = GreenOff;
                 }
 
                 else if (timer >= 2.0f && timer < 5.0f)
                 {
+                    Fixation.SetActive(false);
+                    TrafficLight.SetActive(true);
+                    Crossings.SetActive(true);
+                    Sidewalks.SetActive(true);
+                    Ground.SetActive(true);
                     LightRed.GetComponent<MeshRenderer>().material = RedOn;
                     LightGreen.GetComponent<MeshRenderer>().material = GreenOff;
                 }
@@ -111,29 +122,12 @@ public class PracticeControl : MonoBehaviour
             totaltime += timer;
             Debug.Log("time: " + timer);
 
-            StepEndedTime = DateTime.Now;
-            StepEndedTimeText =
-                StepEndedTime.Hour.ToString() + ":" +
-                StepEndedTime.Minute.ToString() + ":" +
-                StepEndedTime.Second.ToString() + ":" +
-                StepEndedTime.Millisecond.ToString();
-
-            Debug.Log("Step Ended Time: " + StepEndedTimeText);
             Debug.Log("===== Step " + i + " ended =====");
         }
 
         Debug.Log("Practice Step Ended");
         Debug.Log("Total Time: " +  totaltime);
-        AllStepsEndedTime = DateTime.Now;
-        AllStepsEndedTimeText =
-            AllStepsEndedTime.Hour.ToString() + ":" +
-            AllStepsEndedTime.Minute.ToString() + ":" +
-            AllStepsEndedTime.Second.ToString() + ":" +
-            AllStepsEndedTime.Millisecond.ToString();
-
-        string start_time_file = @"C:\Gitproject\Traffic_Light_Time\test_2\subject_3\practice\start_time.txt";
-        File.WriteAllLines(start_time_file, startTimeList);
-        Debug.Log("Steps Finished Time: " + AllStepsEndedTimeText);
-        SceneManager.LoadScene("MidStep");
+        EditorApplication.isPlaying = false;
+        Application.Quit();
     }
 }

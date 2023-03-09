@@ -61,7 +61,22 @@ public class SimpleGetData : MonoBehaviour
             {
                 Debug.Log(e);
             }
-            Debug.Log("Brainflow streaming was stopped");
+            Debug.Log("Brainflow streaming was released");
+        }
+    }
+    private void OnApplicationPause()
+    {
+        if (board_shim != null)
+        {
+            try
+            {
+                board_shim.release_session();
+            }
+            catch (BrainFlowError e)
+            {
+                Debug.Log(e);
+            }
+            Debug.Log("Brainflow streaming was released");
         }
     }
 }

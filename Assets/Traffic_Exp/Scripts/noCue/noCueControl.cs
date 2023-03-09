@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 using System;
 using System.IO;
 using System.Linq;
+using brainflow;
+using brainflow.math;
 
 public class noCueControl : MonoBehaviour
 {
@@ -24,9 +26,7 @@ public class noCueControl : MonoBehaviour
 
     private bool isForwardFrame;
     private bool isKeyDown;
-    private bool isRest;
-
-    private string GrandStartTimeText;
+    private bool isRest = false;
 
     private bool probeTest;
 
@@ -52,6 +52,9 @@ public class noCueControl : MonoBehaviour
         }
     }
 
+    private BoardShim board_shim = null;
+    private int sampling_rate = 0;
+
     // Start is called before the first frame update
     private IEnumerator Start()
     {
@@ -61,6 +64,25 @@ public class noCueControl : MonoBehaviour
         Crossings.SetActive(false);
         Sidewalks.SetActive(false);
         fixationCross.SetActive(false);
+
+        try
+        {
+            BoardShim.set_log_file($"brainflow_log_exp-{ExpNumber}_cue_subject-{SubjectNumber}.txt");
+            BoardShim.enable_dev_board_logger();
+
+            BrainFlowInputParams input_params = new BrainFlowInputParams();
+            int board_id = (int)BoardIds.SYNTHETIC_BOARD;
+            // int board_id = (int)BoardIds.CYTON_BOARD;
+            input_params.serial_port = "COM11";
+            sampling_rate = BoardShim.get_sampling_rate(board_id);
+            board_shim = new BoardShim(board_id, input_params);
+            // board_shim.prepare_session();
+            Debug.Log("Brainflow session has been prepared");
+        }
+        catch (BrainFlowError e)
+        {
+            Debug.Log(e);
+        }
 
         Debug.Log("Wait for Start");
         while (!Input.GetKeyDown(KeyCode.S))
@@ -78,21 +100,22 @@ public class noCueControl : MonoBehaviour
     // Update is called once per frame
     private IEnumerator LoopExp()
     {
-        DateTime GrandStartTime;
+        if (board_shim == null)
+        {
+            yield break;
+        }
+
         int currentBlock = 0;
         int totalAmount = eachBlockTaskAmount * blockAmount;
         float totalDuration = 0;
         List<string> keyEventListAll = new List<string>();
 
-        GrandStartTime = DateTime.Now;
-        GrandStartTimeText =
-            GrandStartTime.Hour.ToString() + ":" +
-            GrandStartTime.Minute.ToString() + ":" +
-            GrandStartTime.Second.ToString() + ":" +
-            GrandStartTime.Millisecond.ToString();
+        Debug.Log("Brainflow streaming was started");
 
         for (int i = 0; i < totalAmount; i++)
         {
+            board_shim.prepare_session();
+
             Subject.transform.position = new Vector3(0, 0, 0);
             Crossings.SetActive(false);
             Sidewalks.SetActive(false);
@@ -112,6 +135,7 @@ public class noCueControl : MonoBehaviour
             }
 
             Debug.Log("===== Step " + (i + 1) + " Started =====");
+            board_shim.start_stream(450000, $"file://brainflow_data_exp-{ExpNumber}_rest_subject-{SubjectNumber}_step-{i+1}.csv:w");
 
             Debug.Log("Fixation Start");
             while (timer < 2.0f)
@@ -148,6 +172,7 @@ public class noCueControl : MonoBehaviour
             {
                 keyEventListAll.Add("1");
                 keyEventList.Add("1");
+                board_shim.insert_marker(i+1);
                 isKeyDown = false;
             }
 
@@ -173,6 +198,8 @@ public class noCueControl : MonoBehaviour
                     Subject.transform.position += transform.forward * speed * Time.deltaTime;
                 }
             }
+            board_shim.stop_stream();
+            board_shim.release_session();
 
             trialDuration += timer;
             totalDuration += trialDuration;
@@ -187,20 +214,11 @@ public class noCueControl : MonoBehaviour
 
             Debug.Log("===== Step " + (i+1) + " Ended =====");
         }
-        
+
         float AllTimePeriod = (float)keyEventListAll.Count() / 250;
         
         Debug.Log("Total Time: " + totalDuration);
         Debug.Log("Total Time Period: " + AllTimePeriod);
-
-        /*
-            TODO:
-                - keyEventArrayAllをファイルに書き出す処理を書く
-                    - 各試行を行ごとに書き込んだファイルも追加で書き出すようにする
-                - 実験開始時刻を計測してファイルに書き出す
-                    - [done] GrandStartTimeText
-                    - GrandStartTimeTextを書き出す
-        */
 
         string KeyEvent_file_path = "";
         
@@ -222,6 +240,39 @@ public class noCueControl : MonoBehaviour
             {
                 sw.WriteLine(line);
             }
+        }
+
+        EditorApplication.isPlaying = false;
+        Application.Quit();
+    }
+    private void OnDestroy()
+    {
+        if (board_shim != null)
+        {
+            try
+            {
+                board_shim.release_session();
+            }
+            catch (BrainFlowError e)
+            {
+                Debug.Log(e);
+            }
+            Debug.Log("Brainflow streaming was released");
+        }
+    }
+    private void OnApplicationPause()
+    {
+        if (board_shim != null)
+        {
+            try
+            {
+                board_shim.release_session();
+            }
+            catch (BrainFlowError e)
+            {
+                Debug.Log(e);
+            }
+            Debug.Log("Brainflow streaming was released");
         }
     }
 }
