@@ -16,6 +16,7 @@ public class CueControl : MonoBehaviour
     public GameObject Crossings;
     public GameObject Sidewalks;
     public GameObject Subject;
+    public GameObject Ground;
     public GameObject LightRed;
     public GameObject LightGreen;
     public Material RedOn;
@@ -30,7 +31,7 @@ public class CueControl : MonoBehaviour
     private float timer;
     private float startTime, distance;
     private float totaltime;
-    private float feedbackDelay = 0.25f;
+    private float feedbackDelay = 0.75f;
     private int currentBlock;
     private bool isForwardFrame;
 
@@ -62,6 +63,7 @@ public class CueControl : MonoBehaviour
         TrafficLight.SetActive(false);
         Crossings.SetActive(false);
         Sidewalks.SetActive(false);
+        Ground.SetActive(false);
 
         try
         {
@@ -69,8 +71,8 @@ public class CueControl : MonoBehaviour
             BoardShim.enable_dev_board_logger();
 
             BrainFlowInputParams input_params = new BrainFlowInputParams();
-            int board_id = (int)BoardIds.SYNTHETIC_BOARD;
-            // int board_id = (int)BoardIds.CYTON_BOARD;
+            // int board_id = (int)BoardIds.SYNTHETIC_BOARD;
+            int board_id = (int)BoardIds.CYTON_BOARD;
             input_params.serial_port = "COM11";
             sampling_rate = BoardShim.get_sampling_rate(board_id);
             board_shim = new BoardShim(board_id, input_params);
@@ -124,6 +126,7 @@ public class CueControl : MonoBehaviour
             TrafficLight.SetActive(false);
             Crossings.SetActive(false);
             Sidewalks.SetActive(false);
+            Ground.SetActive(false);
 
             if (i % eachBlockTaskAmount == 0)
             {
@@ -148,6 +151,7 @@ public class CueControl : MonoBehaviour
                     TrafficLight.SetActive(false);
                     Crossings.SetActive(false);
                     Sidewalks.SetActive(false);
+                    Ground.SetActive(false);
                 }
 
                 else if (timer >= 1.996f && timer <= 2.004f)
@@ -163,6 +167,7 @@ public class CueControl : MonoBehaviour
                     LightRed.GetComponent<MeshRenderer>().material = RedOn;
                     LightGreen.GetComponent<MeshRenderer>().material = GreenOff;
                     Fixation.SetActive(false);
+                    Ground.SetActive(true);
 
                 }
 

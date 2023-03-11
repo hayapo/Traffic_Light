@@ -723,6 +723,7 @@ MonoBehaviour:
   Crossings: {fileID: 204748619}
   Sidewalks: {fileID: 3876695861523324950}
   Subject: {fileID: 1912469059}
+  Ground: {fileID: 3876695861523324951}
   LightRed: {fileID: 1684662761}
   LightGreen: {fileID: 1684662760}
   RedOn: {fileID: 2100000, guid: 5e6203e4552074b47820e2b731bb57dd, type: 2}
@@ -734,7 +735,7 @@ MonoBehaviour:
   blockAmount: 5
   speed: 60
   ExpNumber: 1
-  SubjectNumber: -1
+  SubjectNumber: 4
 --- !u!4 &1870715085
 Transform:
   m_ObjectHideFlags: 0
@@ -1106,6 +1107,12 @@ Transform:
 --- !u!1 &3876695861523324950 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5089468922037325882, guid: c0f28644b24d2d44c8635696a580f5d4,
+    type: 3}
+  m_PrefabInstance: {fileID: 3876695861523324948}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3876695861523324951 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3876695861798162084, guid: c0f28644b24d2d44c8635696a580f5d4,
     type: 3}
   m_PrefabInstance: {fileID: 3876695861523324948}
   m_PrefabAsset: {fileID: 0}

@@ -15,6 +15,7 @@ public class noCueControl : MonoBehaviour
     public GameObject Crossings;
     public GameObject Sidewalks;
     public GameObject Subject;
+    public GameObject Ground;
     public int eachBlockTaskAmount;
     public int blockAmount;
     public float speed;
@@ -22,7 +23,7 @@ public class noCueControl : MonoBehaviour
     private float taskStart;
     private float restEnd;
     private float taskStartTime;
-    private float FEEDBACK_DELAY = 0.25f;
+    private float FEEDBACK_DELAY = 0.75f;
 
     private bool isForwardFrame;
     private bool isKeyDown;
@@ -64,6 +65,8 @@ public class noCueControl : MonoBehaviour
         Crossings.SetActive(false);
         Sidewalks.SetActive(false);
         fixationCross.SetActive(false);
+        Ground.SetActive(false);
+
 
         try
         {
@@ -71,8 +74,8 @@ public class noCueControl : MonoBehaviour
             BoardShim.enable_dev_board_logger();
 
             BrainFlowInputParams input_params = new BrainFlowInputParams();
-            int board_id = (int)BoardIds.SYNTHETIC_BOARD;
-            // int board_id = (int)BoardIds.CYTON_BOARD;
+            // int board_id = (int)BoardIds.SYNTHETIC_BOARD;
+            int board_id = (int)BoardIds.CYTON_BOARD;
             input_params.serial_port = "COM11";
             sampling_rate = BoardShim.get_sampling_rate(board_id);
             board_shim = new BoardShim(board_id, input_params);
@@ -104,7 +107,6 @@ public class noCueControl : MonoBehaviour
         {
             yield break;
         }
-
         int currentBlock = 0;
         int totalAmount = eachBlockTaskAmount * blockAmount;
         float totalDuration = 0;
@@ -120,6 +122,7 @@ public class noCueControl : MonoBehaviour
             Crossings.SetActive(false);
             Sidewalks.SetActive(false);
             fixationCross.SetActive(false);
+            Ground.SetActive(false);
             isForwardFrame = true;
             isKeyDown = false;
             isRest = false;
@@ -150,6 +153,7 @@ public class noCueControl : MonoBehaviour
             fixationCross.SetActive(false);
             Crossings.SetActive(true);
             Sidewalks.SetActive(true);
+            Ground.SetActive(true);
             Debug.Log("Rest Start");
             isRest = true;
 

@@ -419,13 +419,14 @@ MonoBehaviour:
   Crossings: {fileID: 7048073606933025999}
   Sidewalks: {fileID: 1861243537}
   Subject: {fileID: 562781799}
+  Ground: {fileID: 7048073605856343964}
   eachBlockTaskAmount: 6
   blockAmount: 5
   speed: 60
-  isTest: 1
+  isTest: 0
   ExpNumber: 1
-  TestNumber: 3
-  SubjectNumber: 1
+  TestNumber: 1
+  SubjectNumber: 4
 --- !u!1 &1486534152
 GameObject:
   m_ObjectHideFlags: 0
