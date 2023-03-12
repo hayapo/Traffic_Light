@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 using System;
 using System.IO;
 
-public class PracticeControl : MonoBehaviour
+public class CuePracticeControl : MonoBehaviour
 {
     public GameObject Fixation;
     public GameObject TrafficLight;
@@ -20,13 +20,15 @@ public class PracticeControl : MonoBehaviour
     public Material RedOff;
     public Material GreenOn;
     public Material GreenOff;
+    public float speed;
+    public float FEEDBACK_DELAY = 0.75f;
 
     private float timer;
     private float startTime, distance;
     private int stepCount;
     private Vector3 startPosition, targetPosition;
-    public float speed;
     private float totaltime;
+    private bool isForwardFrame;
 
     // Start is called before the first frame update
     private IEnumerator Start()
@@ -64,6 +66,7 @@ public class PracticeControl : MonoBehaviour
         for (int i = 1; i <= 10; i++)
         {
             timer = 0f;
+            isForwardFrame = true;
 
             Subject.transform.position = new Vector3(0, 0, 0);
             LightRed.GetComponent<MeshRenderer>().material = RedOff;
@@ -92,6 +95,11 @@ public class PracticeControl : MonoBehaviour
                     LightGreen.GetComponent<MeshRenderer>().material = GreenOff;
                 }
 
+                else if (timer >= 1.996f && timer <= 2.004f)
+                {
+                    Debug.Log("Red On");
+                }
+
                 else if (timer >= 2.0f && timer < 5.0f)
                 {
                     Fixation.SetActive(false);
@@ -103,21 +111,27 @@ public class PracticeControl : MonoBehaviour
                     LightGreen.GetComponent<MeshRenderer>().material = GreenOff;
                 }
 
+                else if (timer >= 4.996f && timer <= 5.004f)
+                {
+                    Debug.Log("Green On");
+                }
+
                 else if (timer >= 5.0f && timer < 8.0f)
                 {
                     LightRed.GetComponent<MeshRenderer>().material = RedOff;
                     LightGreen.GetComponent<MeshRenderer>().material = GreenOn;
+                    if (isForwardFrame)
+                    {
+                        yield return new WaitForSeconds(FEEDBACK_DELAY);
+                        isForwardFrame = false;
+                    }
                     Subject.transform.position += transform.forward * speed * Time.deltaTime;
                 }
 
-                else if (timer >= 8.0f)
+                else if (timer >= 7.996f && timer <= 8.004f)
                 {
-                    Subject.transform.position = new Vector3(0, 0, 0);
-                    LightRed.GetComponent<MeshRenderer>().material = RedOff;
-                    LightGreen.GetComponent<MeshRenderer>().material = GreenOff;
+                    Debug.Log("Lights Off");
                 }
-
-                // yield return null;
             }
             totaltime += timer;
             Debug.Log("time: " + timer);

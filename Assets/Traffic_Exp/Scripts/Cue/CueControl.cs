@@ -27,11 +27,11 @@ public class CueControl : MonoBehaviour
     public int eachBlockTaskAmount;
     public int blockAmount;
     public float speed;
+    public float FEEDBACK_DELAY = 0.75f;
 
     private float timer;
     private float startTime, distance;
     private float totaltime;
-    private float feedbackDelay = 0.75f;
     private int currentBlock;
     private bool isForwardFrame;
 
@@ -186,7 +186,7 @@ public class CueControl : MonoBehaviour
                     {
                         if (isForwardFrame)
                         {
-                            yield return new WaitForSeconds(feedbackDelay);
+                            yield return new WaitForSeconds(FEEDBACK_DELAY);
                             isForwardFrame = false;
                         }
                     Subject.transform.position += transform.forward * speed * Time.deltaTime;
