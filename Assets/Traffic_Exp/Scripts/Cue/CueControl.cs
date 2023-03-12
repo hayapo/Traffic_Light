@@ -26,7 +26,7 @@ public class CueControl : MonoBehaviour
 
     public int eachBlockTaskAmount;
     public int blockAmount;
-    public float speed;
+    public float speed = 60.0f;
     public float FEEDBACK_DELAY = 0.75f;
 
     private float timer;

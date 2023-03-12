@@ -18,12 +18,12 @@ public class noCueControl : MonoBehaviour
     public GameObject Ground;
     public int eachBlockTaskAmount;
     public int blockAmount;
-    public float speed;
+    public float speed = 60.0f;
+    public float FEEDBACK_DELAY = 0.75f;
     
     private float taskStart;
     private float restEnd;
     private float taskStartTime;
-    private float FEEDBACK_DELAY = 0.75f;
 
     private bool isForwardFrame;
     private bool isKeyDown;
