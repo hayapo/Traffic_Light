@@ -425,9 +425,10 @@ MonoBehaviour:
   speed: 60
   FEEDBACK_DELAY: 0.25
   isTest: 0
+  isDebug: 0
   ExpNumber: 1
   TestNumber: 1
-  SubjectNumber: 6
+  SubjectNumber: 7
 --- !u!1 &1486534152
 GameObject:
   m_ObjectHideFlags: 0

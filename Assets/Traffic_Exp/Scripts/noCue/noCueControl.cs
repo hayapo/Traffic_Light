@@ -32,6 +32,7 @@ public class noCueControl : MonoBehaviour
     private bool probeTest;
 
     public bool isTest;
+    public bool isDebug;
     public int ExpNumber;
     public int TestNumber;
     public int SubjectNumber;
@@ -47,6 +48,7 @@ public class noCueControl : MonoBehaviour
 
     void Update()
     {
+        // KeyCode.Keypad5
         if (Input.GetKeyDown(KeyCode.Keypad5) && isRest)
         {
             isKeyDown = true;
@@ -74,8 +76,15 @@ public class noCueControl : MonoBehaviour
             BoardShim.enable_dev_board_logger();
 
             BrainFlowInputParams input_params = new BrainFlowInputParams();
-            // int board_id = (int)BoardIds.SYNTHETIC_BOARD;
-            int board_id = (int)BoardIds.CYTON_BOARD;
+            int board_id;
+            if (isDebug)
+            {
+                board_id = (int)BoardIds.SYNTHETIC_BOARD;
+            }
+            else
+            {
+                board_id = (int)BoardIds.CYTON_BOARD;
+            }
             input_params.serial_port = "COM11";
             sampling_rate = BoardShim.get_sampling_rate(board_id);
             board_shim = new BoardShim(board_id, input_params);
@@ -111,6 +120,7 @@ public class noCueControl : MonoBehaviour
         int totalAmount = eachBlockTaskAmount * blockAmount;
         float totalDuration = 0;
         List<string> keyEventListAll = new List<string>();
+        List<List<string>> keyEventPerStep = new List<List<string>>();
 
         Debug.Log("Brainflow streaming was started");
 
@@ -157,13 +167,6 @@ public class noCueControl : MonoBehaviour
             Debug.Log("Rest Start");
             isRest = true;
 
-            //while (!Input.GetKeyDown(Keypad5)) // Keypad5
-            //{
-            //    timer += Time.deltaTime;
-            //    keyEventListAll.Add("0");
-            //    yield return new WaitForFixedUpdate();
-            //}
-
             while (!isKeyDown)
             {
                 timer += Time.deltaTime;
@@ -209,12 +212,14 @@ public class noCueControl : MonoBehaviour
             totalDuration += trialDuration;
             Debug.Log("Total Time: " + trialDuration);
 
-            // keyEventë§Ç™1frameï™ëΩÇ¢ÇÃÇ≈AdjustÇ∑ÇÈ
+            // keyEventë§Ç™1frameï™ëΩÇ¢ÇÃÇ≈ï‚ê≥Ç∑ÇÈ
             keyEventListAll.RemoveAt(keyEventListAll.Count() - 1);
             keyEventList.RemoveAt(keyEventList.Count() - 1);
 
             float TimePeriod = (float)keyEventList.Count() / 250;
             Debug.Log("Total Time Period: " + TimePeriod);
+
+            keyEventPerStep.Add(keyEventList);
 
             Debug.Log("===== Step " + (i+1) + " Ended =====");
         }
@@ -235,6 +240,11 @@ public class noCueControl : MonoBehaviour
         }
         
         string KeyEvent_file_name = "KeyEventAllTime.txt";
+
+        if (!Directory.Exists(KeyEvent_file_path))
+        {
+            Directory.CreateDirectory(KeyEvent_file_path);
+        }
         
         Debug.Log(KeyEvent_file_path + KeyEvent_file_name);
         
@@ -243,6 +253,19 @@ public class noCueControl : MonoBehaviour
             foreach (var line in keyEventListAll)
             {
                 sw.WriteLine(line);
+            }
+        }
+
+
+        for (int t=0; t < totalAmount; t++)
+        {
+            string KeyEventPerStep_file_name = $"KeyEventPerStep_{t + 1}.txt";
+            using (StreamWriter sw = new StreamWriter(KeyEvent_file_path + KeyEventPerStep_file_name, false))
+            {
+                foreach(var line in keyEventPerStep[t])
+                {
+                    sw.WriteLine(line);
+                }
             }
         }
 
