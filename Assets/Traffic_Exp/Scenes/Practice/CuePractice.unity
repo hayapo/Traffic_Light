@@ -747,6 +747,7 @@ MonoBehaviour:
   GreenOff: {fileID: 8984458609270476399, guid: b0a40d57ad6e0d042b1fc4b9cbf022f6,
     type: 3}
   speed: 60
+  FEEDBACK_DELAY: 0.25
 --- !u!1001 &1912469058
 PrefabInstance:
   m_ObjectHideFlags: 0

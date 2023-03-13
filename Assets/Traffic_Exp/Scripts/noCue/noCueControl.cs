@@ -70,7 +70,7 @@ public class noCueControl : MonoBehaviour
 
         try
         {
-            BoardShim.set_log_file($"brainflow_log_exp-{ExpNumber}_cue_subject-{SubjectNumber}.txt");
+            BoardShim.set_log_file($"brainflow_log_exp-{ExpNumber}_nocue_subject-{SubjectNumber}.txt");
             BoardShim.enable_dev_board_logger();
 
             BrainFlowInputParams input_params = new BrainFlowInputParams();
@@ -138,7 +138,7 @@ public class noCueControl : MonoBehaviour
             }
 
             Debug.Log("===== Step " + (i + 1) + " Started =====");
-            board_shim.start_stream(450000, $"file://brainflow_data_exp-{ExpNumber}_rest_subject-{SubjectNumber}_step-{i+1}.csv:w");
+            board_shim.start_stream(450000, $"file://brainflow_data_exp-{ExpNumber}_nocue_subject-{SubjectNumber}_step-{i+1}.csv:w");
 
             Debug.Log("Fixation Start");
             while (timer < 2.0f)

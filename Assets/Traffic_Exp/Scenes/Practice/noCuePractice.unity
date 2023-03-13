@@ -580,7 +580,7 @@ MonoBehaviour:
   Subject: {fileID: 1912469059}
   Ground: {fileID: 2045900100}
   speed: 60
-  FEEDBACK_DELAY: 0.75
+  FEEDBACK_DELAY: 0.25
   isTest: 0
   ExpNumber: 0
   TestNumber: 0

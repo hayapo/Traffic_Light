@@ -423,10 +423,11 @@ MonoBehaviour:
   eachBlockTaskAmount: 6
   blockAmount: 5
   speed: 60
+  FEEDBACK_DELAY: 0.25
   isTest: 0
   ExpNumber: 1
   TestNumber: 1
-  SubjectNumber: 4
+  SubjectNumber: 6
 --- !u!1 &1486534152
 GameObject:
   m_ObjectHideFlags: 0
