@@ -1,28 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using VRM;
+//using System.Collections;
+//using System.Collections.Generic;
+//using UnityEngine;
+//using VRM;
 
-[RequireComponent(typeof(VRMFirstPerson))]
-public class VRMFirstPersonSetting : MonoBehaviour
-{
+//[RequireComponent(typeof(VRMFirstPerson))]
+//public class VRMFirstPersonSetting : MonoBehaviour
+//{
 
-    [SerializeField] bool isFirtPerson;
+//    [SerializeField] bool isFirtPerson;
 
-    VRMFirstPerson vrmFirstPerson;
+//    VRMFirstPerson vrmFirstPerson;
 
-    void Start()
-    {
+//    void Start()
+//    {
 
-        vrmFirstPerson = GetComponent<VRMFirstPerson>();
+//        vrmFirstPerson = GetComponent<VRMFirstPerson>();
 
-        if (isFirtPerson)
-            vrmFirstPerson.Setup();
+//        if (isFirtPerson)
+//            vrmFirstPerson.Setup();
 
-    }
+//    }
 
-    void Update()
-    {
+//    void Update()
+//    {
 
-    }
-}
+//    }
+//}

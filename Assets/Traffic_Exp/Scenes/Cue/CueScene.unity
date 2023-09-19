@@ -169,7 +169,7 @@ Transform:
   - {fileID: 615502992}
   - {fileID: 1342586457}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &204748619 stripped
 GameObject:
@@ -722,7 +722,7 @@ MonoBehaviour:
   TrafficLight: {fileID: 1389280554}
   Crossings: {fileID: 204748619}
   Sidewalks: {fileID: 3876695861523324950}
-  Subject: {fileID: 1912469059}
+  Subject: {fileID: 0}
   Ground: {fileID: 3876695861523324951}
   LightRed: {fileID: 1684662761}
   LightGreen: {fileID: 1684662760}
@@ -750,109 +750,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1912469058
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1876294109619520954, guid: 81fea1f32f421ec4bafcbb9fa85eea97,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1876294109619520954, guid: 81fea1f32f421ec4bafcbb9fa85eea97,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1876294109619520954, guid: 81fea1f32f421ec4bafcbb9fa85eea97,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1876294109619520954, guid: 81fea1f32f421ec4bafcbb9fa85eea97,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1876294109619520954, guid: 81fea1f32f421ec4bafcbb9fa85eea97,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1876294109619520954, guid: 81fea1f32f421ec4bafcbb9fa85eea97,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1876294109619520954, guid: 81fea1f32f421ec4bafcbb9fa85eea97,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1876294109619520954, guid: 81fea1f32f421ec4bafcbb9fa85eea97,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1876294109619520954, guid: 81fea1f32f421ec4bafcbb9fa85eea97,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1876294109619520954, guid: 81fea1f32f421ec4bafcbb9fa85eea97,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1876294109619520954, guid: 81fea1f32f421ec4bafcbb9fa85eea97,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3626072128105165149, guid: 81fea1f32f421ec4bafcbb9fa85eea97,
-        type: 3}
-      propertyPath: field of view
-      value: 75.47808
-      objectReference: {fileID: 0}
-    - target: {fileID: 3626072128105165149, guid: 81fea1f32f421ec4bafcbb9fa85eea97,
-        type: 3}
-      propertyPath: far clip plane
-      value: 10000
-      objectReference: {fileID: 0}
-    - target: {fileID: 3626072128105165149, guid: 81fea1f32f421ec4bafcbb9fa85eea97,
-        type: 3}
-      propertyPath: near clip plane
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3626072129458377082, guid: 81fea1f32f421ec4bafcbb9fa85eea97,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.134
-      objectReference: {fileID: 0}
-    - target: {fileID: 5595530909602263171, guid: 81fea1f32f421ec4bafcbb9fa85eea97,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.04
-      objectReference: {fileID: 0}
-    - target: {fileID: 6479186714930940858, guid: 81fea1f32f421ec4bafcbb9fa85eea97,
-        type: 3}
-      propertyPath: m_Name
-      value: Subject
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3626072128518356186, guid: 81fea1f32f421ec4bafcbb9fa85eea97, type: 3}
-  m_SourcePrefab: {fileID: 100100000, guid: 81fea1f32f421ec4bafcbb9fa85eea97, type: 3}
---- !u!1 &1912469059 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6479186714930940858, guid: 81fea1f32f421ec4bafcbb9fa85eea97,
-    type: 3}
-  m_PrefabInstance: {fileID: 1912469058}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2132802847
 GameObject:
   m_ObjectHideFlags: 0
