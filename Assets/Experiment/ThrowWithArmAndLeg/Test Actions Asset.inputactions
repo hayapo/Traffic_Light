@@ -1,0 +1,54 @@
+{
+    "name": "Test Actions Asset",
+    "maps": [
+        {
+            "name": "Test",
+            "id": "967c9a6f-6c44-4c35-a1fe-abe23877cf6b",
+            "actions": [
+                {
+                    "name": "Position",
+                    "type": "Value",
+                    "id": "a6a57952-7abb-4563-bd55-8550d3a9769e",
+                    "expectedControlType": "Vector3",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Rotation",
+                    "type": "Value",
+                    "id": "715e1890-d090-4b2b-ace9-d4d40ede5464",
+                    "expectedControlType": "Quaternion",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "77915bfb-ad4e-4ace-b378-9321243edf66",
+                    "path": "<XRViveTracker>{Waist}/devicePosition",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Position",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c2da71ec-42e1-45b2-9548-3cc05275d47f",
+                    "path": "<XRViveTracker>{Waist}/deviceRotation",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
