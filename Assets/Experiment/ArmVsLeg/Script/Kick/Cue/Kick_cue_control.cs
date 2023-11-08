@@ -28,7 +28,10 @@ public class Kick_cue_control : MonoBehaviour
     // GameObjects
     public GameObject Fixation;
     public GameObject Ball;
-    AudioSource audioSource;
+    public GameObject Floor;
+    [SerializeField] private AudioSource BeepAudioSource;
+    [SerializeField] private AudioClip BeepAudioClip;
+    // AudioSource audioSource;
 
     // Subject info
     public string COM_PORT;
@@ -54,7 +57,7 @@ public class Kick_cue_control : MonoBehaviour
     // Start is called before the first frame update
     private IEnumerator Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        // audioSource = GetComponent<AudioSource>();
         initalBallPosition = Ball.transform.position;
 
         // OpenBCI board session preparing
@@ -121,6 +124,7 @@ public class Kick_cue_control : MonoBehaviour
                     // Display fixation cross & undisplay Ball
                     Fixation.SetActive(true);
                     Ball.SetActive(false);
+                    Floor.SetActive(false);
                 }
                 else if (timer >= 3.0f - 0.004f && timer <= 3.004f)
                 {
@@ -128,7 +132,8 @@ public class Kick_cue_control : MonoBehaviour
                     Debug.Log($"Step {i + 1}: Beep sound ring for prepare");
                     Fixation.SetActive(false);
                     Ball.SetActive(true);
-                    audioSource.PlayOneShot(audioSource.clip);
+                    Floor.SetActive(true);
+                    BeepAudioSource.PlayOneShot(BeepAudioClip);
                 }
 
                 else if (timer >= 3.0f + 1.0f - 0.004f && timer < 3.0f + 1.0f + 0.004f)
@@ -144,7 +149,7 @@ public class Kick_cue_control : MonoBehaviour
                 {
                     Debug.Log($"Step {i + 1}: Beep sound ring for starting motor imagery task");
                     board_shim.insert_marker(2);
-                    audioSource.PlayOneShot(audioSource.clip);
+                    BeepAudioSource.PlayOneShot(BeepAudioClip);
                 }
 
                 else if (timer > 3.0f + 1.0f + WAIT_SECOND_LIST[i] + 1.0f + 0.004f && timer <= totalDuration + 0.004f)
