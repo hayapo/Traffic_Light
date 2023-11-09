@@ -16,8 +16,8 @@ public class Kick_cue_control : MonoBehaviour
     private int eachBlockTaskAmount = 6;
     private int blockAmount = 5;
     private int currentBlock;
-    public float speed = 60.0f;
-    public float FEEDBACK_DELAY = 0.50f;
+    [SerializeField] public float speed;
+    [SerializeField] public float FEEDBACK_DELAY;
     private float timer, startTime, distance, totalTime;
     private bool isForwardTrial = false;
     private bool isKeyDown = false;
@@ -26,21 +26,21 @@ public class Kick_cue_control : MonoBehaviour
     private Vector3 initalBallPosition;
 
     // GameObjects
-    public GameObject Fixation;
-    public GameObject Ball;
-    public GameObject Floor;
+    [SerializeField] public GameObject Fixation;
+    [SerializeField] public GameObject Ball;
+    [SerializeField] public GameObject Floor;
     [SerializeField] private AudioSource BeepAudioSource;
     [SerializeField] private AudioClip BeepAudioClip;
     // AudioSource audioSource;
 
     // Subject info
-    public string COM_PORT;
-    public bool isTest;
-    public bool useSyntheticBoard = false;
-    public bool isDebug;
-    public int ExpNumber;
-    public int TestNumber;
-    public int SubjectNumber;
+    [SerializeField] public string COM_PORT;
+    [SerializeField] public bool isTest;
+    [SerializeField] public bool useSyntheticBoard = false;
+    [SerializeField] public bool isDebug;
+    [SerializeField] public int ExpNumber;
+    [SerializeField] public int TestNumber;
+    [SerializeField] public int SubjectNumber;
 
     // For OpenBCI Cyton board init
     private BoardShim board_shim = null;
@@ -63,11 +63,20 @@ public class Kick_cue_control : MonoBehaviour
         // OpenBCI board session preparing
         try
         {
-            BoardShim.set_log_file($"brainflow_log_exp-{ExpNumber}_cue_subject-{SubjectNumber}.txt");
+            BoardShim.set_log_file($"brainflow_log_exp-{ExpNumber}_subject-{SubjectNumber}_kick_cue.txt");
             BoardShim.enable_dev_board_logger();
 
             BrainFlowInputParams input_params = new BrainFlowInputParams();
-            int board_id = (int)BoardIds.SYNTHETIC_BOARD;
+            int board_id;
+            if (isDebug)
+            {
+                board_id = (int)BoardIds.SYNTHETIC_BOARD;
+            }
+            else
+            {
+                board_id = (int)BoardIds.CYTON_BOARD;
+            }
+            input_params.serial_port = "COM3";
             board_shim = new BoardShim(board_id, input_params);
             Debug.Log("Brainflow session has been prepared");
         }
