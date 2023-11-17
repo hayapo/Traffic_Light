@@ -985,9 +985,9 @@ MonoBehaviour:
   COM_PORT: COM3
   isTest: 1
   useSyntheticBoard: 1
-  ExpNumber: 3333
-  SubjectNumber: 3333
-  TestNumber: 3333
+  ExpNumber: -3333
+  SubjectNumber: -3333
+  TestNumber: -3333
 --- !u!1 &1591908609
 GameObject:
   m_ObjectHideFlags: 0
