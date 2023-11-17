@@ -15,10 +15,10 @@ public class Kick_nocue_control : MonoBehaviour
     // Constants
     private int eachBlockTaskAmount = 6;
     private int blockAmount = 5;
-    //private float timer, startTime, distance, totalTime;
     //private bool isForwardTrial = false;
     private bool isCueKeyDown = false, isWait, isDelayFrame;
     private Vector3 initalBallPosition;
+    private string rawdataFileName;
 
     // SerializeFields
     // Ball speed and Feedback delay time 
@@ -34,10 +34,9 @@ public class Kick_nocue_control : MonoBehaviour
     [SerializeField] public string COM_PORT;
     [SerializeField] public bool isTest;
     [SerializeField] public bool useSyntheticBoard = false;
-    [SerializeField] public bool isDevelop;
     [SerializeField] public int ExpNumber;
-    [SerializeField] public int TestNumber;
     [SerializeField] public int SubjectNumber;
+    [SerializeField] public int TestNumber;
 
     // For OpenBCI Cyton board init
     private BoardShim board_shim = null;
@@ -68,23 +67,41 @@ public class Kick_nocue_control : MonoBehaviour
         // OpenBCI board session preparing
         try
         {
-            BoardShim.set_log_file($"brainflow_log_exp-{ExpNumber}_subject-{SubjectNumber}_kick_nocue.txt");
-            BoardShim.enable_dev_board_logger();
-
-            BrainFlowInputParams input_params = new BrainFlowInputParams();
-
             int board_id;
+            string logFileName;
 
-            if (isDevelop)
+            if (isTest)
             {
-                board_id = (int)BoardIds.SYNTHETIC_BOARD;
-                useKeyForCue = Keyboard.current.fKey;
+                if (useSyntheticBoard)
+                {
+                    board_id = (int)BoardIds.SYNTHETIC_BOARD;
+                    useKeyForCue = Keyboard.current.fKey;
+                } 
+                else
+                {
+                    board_id = (int)BoardIds.CYTON_BOARD;
+                    useKeyForCue = Keyboard.current.fKey;
+                }
+
+                // Generate filename for development
+                logFileName = $"brainflow_log_kick-nocue_test-{TestNumber}";
+                rawdataFileName = $"brainflow_data_kick-nocue_test-{TestNumber}";
             }
             else
             {
                 board_id = (int)BoardIds.CYTON_BOARD;
-                useKeyForCue = Keyboard.current.numpad5Key;
+                useKeyForCue = Keyboard.current.fKey;
+
+                // Generate filename for development
+                logFileName = $"brainflow_log_kick-nocue_subject-{SubjectNumber}";
+                rawdataFileName = $"brainflow_data_kick-nocue_subject-{SubjectNumber}";
             }
+
+            BoardShim.set_log_file($"{logFileName}.txt");
+            BoardShim.enable_dev_board_logger();
+
+            BrainFlowInputParams input_params = new BrainFlowInputParams();
+            input_params.serial_port = "COM3";
 
             board_shim = new BoardShim(board_id, input_params);
             Debug.Log("Brainflow session has been prepared");
@@ -110,25 +127,25 @@ public class Kick_nocue_control : MonoBehaviour
     // Update is called once per frame
     private IEnumerator LoopExp()
     {
-        float timer, startTime, distance, totalTime = 0.0f, waitEndTime;
+        float timer, startTime, distance, totalDuration = 0.0f, waitEndTime;
         int totalTrialAmount = eachBlockTaskAmount * blockAmount;
+        List<string> keyEventListAllTime = new List<string>();
 
         isDelayFrame = true;
 
         board_shim.prepare_session();
-        board_shim.start_stream(450000, $"file://brainflow_data_exp-{ExpNumber}_subject-{SubjectNumber}_kick_nocue.csv:w");
+        board_shim.start_stream(450000, $"file://{rawdataFileName}.csv:w");
 
         for (int i = 0; i < totalTrialAmount; i++)
         {
             timer = 0f;
-            float durationMiTask = 0.0f;
+            float trialDuration = 0.0f;
             int currentBlock = i / eachBlockTaskAmount; //現在のブロック( 0 - 5 )を計算
 
             // float currentLoopTimer = 0f;
             // float totalDuration = 3.0f + 1.0f + NO_FEEDBACK_TRIAL_LIST[i] + 1.0f + 3.0f;
 
-            // 試行の最初にボールの位置を
-            // ボールの初期位置(Inspectorで指定した位置)にする
+            // 試行の最初にボールの位置を,ボールの初期位置(Inspectorで指定した位置)にする
             Ball.transform.position = initalBallPosition;
 
             Debug.Log("===== Step " + (i + 1) + " Started =====");
@@ -138,31 +155,35 @@ public class Kick_nocue_control : MonoBehaviour
             {
                 yield return new WaitForFixedUpdate();
                 timer += Time.deltaTime;
+                keyEventListAllTime.Add("0");
 
                 // Display Fixation Cross (& hide Ball and Floor)
                 Fixation.SetActive(true);
                 Ball.SetActive(false);
                 Floor.SetActive(false);
-
             }
 
             Debug.Log($"Step {i + 1}: Arbitrary waiting period start");
+
             Fixation.SetActive(false);
             Ball.SetActive(true);
             Floor.SetActive(true);
             isWait = true;
+
             while (!isCueKeyDown)
             {
                 timer += Time.deltaTime;
+                keyEventListAllTime.Add("0");
+
                 yield return new WaitForFixedUpdate();
             }
             if (isCueKeyDown)
             {
-                //keyEventListAll.Add("1");
-                //keyEventList.Add("1");
+                keyEventListAllTime.Add("1");
                 board_shim.insert_marker(i + 1);
                 isCueKeyDown = false;
             }
+
             waitEndTime = timer;
             isWait = false;
 
@@ -171,8 +192,7 @@ public class Kick_nocue_control : MonoBehaviour
             {
                 yield return new WaitForFixedUpdate();
                 timer += Time.deltaTime;
-                //keyEventListAll.Add("0");
-                //keyEventList.Add("0");
+                keyEventListAllTime.Add("0");
 
                 if (i+1 != NO_FEEDBACK_TRIAL_LIST[currentBlock])
                 {
@@ -186,16 +206,53 @@ public class Kick_nocue_control : MonoBehaviour
                 }
             }
 
-            Debug.Log($"Step {i + 1}: mi task duration is {durationMiTask}");
+            // keyEvent側が1frame分多いので補正する
+            keyEventListAllTime.RemoveAt(keyEventListAllTime.Count() - 1);
 
-            totalTime += timer;
+            totalDuration += timer;
+            totalDuration += trialDuration;
+
             Debug.Log($"Step {i + 1} time: {timer}");
             Debug.Log($"===== Step {i + 1} ended =====");
         }
+
         board_shim.stop_stream();
         board_shim.release_session();
+
         Debug.Log("No Cue Exp Ended");
-        Debug.Log("Total Time: " + totalTime);
+        Debug.Log("Total Time: " + totalDuration);
+
+        float AllTimePeriod = (float)keyEventListAllTime.Count() / 250;
+        Debug.Log("Total Time Period: " + AllTimePeriod);
+
+        // Writing key event log file
+        string KeyEvent_file_path = "";
+
+        if (isTest)
+        {
+            KeyEvent_file_path = $@"C:\Gitproject\Traffic_Light\Exp_Event_Record\exp_{ExpNumber}\test_{TestNumber}\subject_{SubjectNumber}\";
+        }
+        else
+        {
+            KeyEvent_file_path = $@"C:\Gitproject\Traffic_Light\Exp_Event_Record\exp_{ExpNumber}\subject_{SubjectNumber}\";
+        }
+
+        string KeyEvent_file_name = "KeyEventAllTime.txt";
+
+        if (!Directory.Exists(KeyEvent_file_path))
+        {
+            Directory.CreateDirectory(KeyEvent_file_path);
+        }
+
+        Debug.Log(KeyEvent_file_path + KeyEvent_file_name);
+
+        using (StreamWriter sw = new StreamWriter(KeyEvent_file_path + KeyEvent_file_name, false))
+        {
+            foreach (var line in keyEventListAllTime)
+            {
+                sw.WriteLine(line);
+            }
+        }
 
         EditorApplication.isPlaying = false;
         Application.Quit();
