@@ -49,7 +49,8 @@ public class Kick_nocue_control : MonoBehaviour
     // Start is called before the first frame update
     private void Update()
     {
-        if (useKeyForCue.wasPressedThisFrame && isWait)
+        //Input.GetKeyDown(KeyCode.Keypad5)
+        if (Input.GetKeyDown(KeyCode.Keypad5) && isWait)
         {
             isCueKeyDown = true;
         }
