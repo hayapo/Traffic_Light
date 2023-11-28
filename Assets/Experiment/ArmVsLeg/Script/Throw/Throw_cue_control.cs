@@ -19,11 +19,9 @@ public class Throw_cue_control : MonoBehaviour
     [SerializeField] public float speed;
     [SerializeField] public float FEEDBACK_DELAY;
     private float timer, startTime, distance, totalTime;
-    private bool isForwardTrial = false;
-    private bool isKeyDown = false;
-    private bool isRest = false;
     private bool isDelayFrame;
     private Vector3 initalBallPosition;
+    private string logFileName, rawdataFileName;
 
     // GameObjects
     [SerializeField] public GameObject Fixation;
@@ -44,7 +42,7 @@ public class Throw_cue_control : MonoBehaviour
 
     // For OpenBCI Cyton board init
     private BoardShim board_shim = null;
-    private int sampling_rate = 0;
+    //private int sampling_rate = 0;
 
     // Experimental constants 
     private float[] WAIT_SECOND_LIST = new float[] {
@@ -63,20 +61,33 @@ public class Throw_cue_control : MonoBehaviour
         // OpenBCI board session preparing
         try
         {
-            BoardShim.set_log_file($"brainflow_log_exp-{ExpNumber}_subject-{SubjectNumber}_throw_cue.txt");
-            BoardShim.enable_dev_board_logger();
-
-            BrainFlowInputParams input_params = new BrainFlowInputParams();
             int board_id;
-            if (isDebug)
+
+            if (isTest)
             {
-                board_id = (int)BoardIds.SYNTHETIC_BOARD;
+                board_id = useSyntheticBoard
+                    ? (int)BoardIds.SYNTHETIC_BOARD
+                    : (int)BoardIds.CYTON_BOARD;
+
+                // Generate filename
+                logFileName = $"brainflow_log_throw-cue_test-{TestNumber}";
+                rawdataFileName = $"brainflow_data_throw-cue_test-{TestNumber}";
             }
             else
             {
                 board_id = (int)BoardIds.CYTON_BOARD;
+
+                // Generate filename
+                logFileName = $"brainflow_log_throw-cue_subject-{SubjectNumber}";
+                rawdataFileName = $"brainflow_data_throw-cue_subject-{SubjectNumber}";
             }
-            input_params.serial_port = "COM11";
+
+            BoardShim.set_log_file($"{logFileName}.txt");
+            BoardShim.enable_dev_board_logger();
+
+            BrainFlowInputParams input_params = new BrainFlowInputParams();
+            input_params.serial_port = COM_PORT;
+
             board_shim = new BoardShim(board_id, input_params);
             Debug.Log("Brainflow session has been prepared");
         }
@@ -108,7 +119,7 @@ public class Throw_cue_control : MonoBehaviour
         int totalAmount = eachBlockTaskAmount * blockAmount;
 
         board_shim.prepare_session();
-        board_shim.start_stream(450000, $"file://brainflow_data_exp-{ExpNumber}_subject-{SubjectNumber}_throw_cue.csv:w");
+        board_shim.start_stream(450000, $"file://{rawdataFileName}.csv:w");
 
         for (int i = 0; i < totalAmount; i++)
         {

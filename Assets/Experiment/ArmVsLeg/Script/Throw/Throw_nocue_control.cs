@@ -40,11 +40,11 @@ public class Throw_nocue_control : MonoBehaviour
 
     // For OpenBCI Cyton board init
     private BoardShim board_shim = null;
-    private int sampling_rate = 0;
+    // private int sampling_rate = 0;
 
     // Experimental constants 
     private int[] NO_FEEDBACK_TRIAL_LIST = new int[] { 2, 7, 18, 22, 29 };
-    UnityEngine.InputSystem.Controls.KeyControl useKeyForCue;
+    //UnityEngine.InputSystem.Controls.KeyControl useKeyForCue;
 
     // Start is called before the first frame update
     private void Update()
@@ -76,12 +76,12 @@ public class Throw_nocue_control : MonoBehaviour
                 if (useSyntheticBoard)
                 {
                     board_id = (int)BoardIds.SYNTHETIC_BOARD;
-                    useKeyForCue = Keyboard.current.fKey;
+                    //useKeyForCue = Keyboard.current.fKey;
                 } 
                 else
                 {
                     board_id = (int)BoardIds.CYTON_BOARD;
-                    useKeyForCue = Keyboard.current.fKey;
+                    //useKeyForCue = Keyboard.current.fKey;
                 }
 
                 // Generate filename for development
@@ -91,7 +91,7 @@ public class Throw_nocue_control : MonoBehaviour
             else
             {
                 board_id = (int)BoardIds.CYTON_BOARD;
-                useKeyForCue = Keyboard.current.fKey;
+                //useKeyForCue = Keyboard.current.fKey;
 
                 // Generate filename for development
                 logFileName = $"brainflow_log_throw-nocue_subject-{SubjectNumber}";
@@ -102,7 +102,7 @@ public class Throw_nocue_control : MonoBehaviour
             BoardShim.enable_dev_board_logger();
 
             BrainFlowInputParams input_params = new BrainFlowInputParams();
-            input_params.serial_port = "COM11";
+            input_params.serial_port = COM_PORT;
 
             board_shim = new BoardShim(board_id, input_params);
             Debug.Log("Brainflow session has been prepared");

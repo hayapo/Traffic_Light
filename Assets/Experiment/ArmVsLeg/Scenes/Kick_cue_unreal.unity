@@ -661,12 +661,11 @@ MonoBehaviour:
   BeepAudioSource: {fileID: 1405969126}
   BeepAudioClip: {fileID: 8300000, guid: d1cd4df1b68c71a47ab7c3e6bf312ec1, type: 3}
   COM_PORT: COM11
-  isTest: 0
-  useSyntheticBoard: 0
-  isDebug: 0
-  ExpNumber: 1
-  TestNumber: 1
-  SubjectNumber: 1
+  isTest: 1
+  useSyntheticBoard: 1
+  ExpNumber: 11
+  TestNumber: 11
+  SubjectNumber: 11
 --- !u!82 &1405969126
 AudioSource:
   m_ObjectHideFlags: 0
