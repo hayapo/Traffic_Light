@@ -1,0 +1,10 @@
+[2023-11-28 19:23:11.288] [board_logger] [info] incoming json: {"file":"","file_anc":"","file_aux":"","ip_address":"","ip_address_anc":"","ip_address_aux":"","ip_port":0,"ip_port_anc":0,"ip_port_aux":0,"ip_protocol":0,"mac_address":"","master_board":-100,"other_info":"","serial_number":"","serial_port":"COM11","timeout":0}
+[2023-11-28 19:23:11.288] [board_logger] [trace] Board object created 0
+[2023-11-28 19:23:11.288] [board_logger] [info] opening port \\.\COM11
+[2023-11-28 19:23:11.306] [board_logger] [trace] port \\.\COM11 is open
+[2023-11-28 19:23:11.308] [board_logger] [trace] set port settings
+[2023-11-28 19:23:11.308] [board_logger] [debug] sending v to the board
+[2023-11-28 19:23:12.374] [board_logger] [debug] sending d to the board
+[2023-11-28 19:23:13.570] [board_logger] [trace] File Streamer, file: brainflow_data_exp--3_subject--3_kick_cue.csv, mods: w
+[2023-11-28 19:23:13.570] [board_logger] [debug] sending b to the board
+[2023-11-28 19:25:25.199] [board_logger] [debug] sending s to the board

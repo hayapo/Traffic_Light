@@ -102,7 +102,7 @@ public class Throw_nocue_control : MonoBehaviour
             BoardShim.enable_dev_board_logger();
 
             BrainFlowInputParams input_params = new BrainFlowInputParams();
-            input_params.serial_port = "COM3";
+            input_params.serial_port = "COM11";
 
             board_shim = new BoardShim(board_id, input_params);
             Debug.Log("Brainflow session has been prepared");

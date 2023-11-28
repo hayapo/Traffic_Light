@@ -76,7 +76,7 @@ public class Kick_cue_control : MonoBehaviour
             {
                 board_id = (int)BoardIds.CYTON_BOARD;
             }
-            input_params.serial_port = "COM3";
+            input_params.serial_port = "COM11";
             board_shim = new BoardShim(board_id, input_params);
             Debug.Log("Brainflow session has been prepared");
         }

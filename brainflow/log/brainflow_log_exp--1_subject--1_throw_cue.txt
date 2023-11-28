@@ -1,0 +1,36 @@
+[2023-11-28 18:55:10.273] [board_logger] [info] incoming json: {"file":"","file_anc":"","file_aux":"","ip_address":"","ip_address_anc":"","ip_address_aux":"","ip_port":0,"ip_port_anc":0,"ip_port_aux":0,"ip_protocol":0,"mac_address":"","master_board":-100,"other_info":"","serial_number":"","serial_port":"COM3","timeout":0}
+[2023-11-28 18:55:10.273] [board_logger] [trace] Board object created 0
+[2023-11-28 18:55:10.273] [board_logger] [info] opening port \\.\COM3
+[2023-11-28 18:55:15.458] [board_logger] [error] Make sure you provided correct port name and have permissions to open it(run with sudo/admin). Also, close all other apps using this port.
+[2023-11-28 18:55:40.481] [board_logger] [info] incoming json: {"file":"","file_anc":"","file_aux":"","ip_address":"","ip_address_anc":"","ip_address_aux":"","ip_port":0,"ip_port_anc":0,"ip_port_aux":0,"ip_protocol":0,"mac_address":"","master_board":-100,"other_info":"","serial_number":"","serial_port":"COM3","timeout":0}
+[2023-11-28 18:55:40.481] [board_logger] [trace] Board object created 0
+[2023-11-28 18:55:40.481] [board_logger] [info] opening port \\.\COM3
+[2023-11-28 18:55:45.666] [board_logger] [error] Make sure you provided correct port name and have permissions to open it(run with sudo/admin). Also, close all other apps using this port.
+[2023-11-28 18:57:13.606] [board_logger] [info] incoming json: {"file":"","file_anc":"","file_aux":"","ip_address":"","ip_address_anc":"","ip_address_aux":"","ip_port":0,"ip_port_anc":0,"ip_port_aux":0,"ip_protocol":0,"mac_address":"","master_board":-100,"other_info":"","serial_number":"","serial_port":"COM3","timeout":0}
+[2023-11-28 18:57:13.607] [board_logger] [trace] Board object created 0
+[2023-11-28 18:57:13.607] [board_logger] [info] opening port \\.\COM3
+[2023-11-28 18:57:18.793] [board_logger] [error] Make sure you provided correct port name and have permissions to open it(run with sudo/admin). Also, close all other apps using this port.
+[2023-11-28 18:57:55.787] [board_logger] [info] incoming json: {"file":"","file_anc":"","file_aux":"","ip_address":"","ip_address_anc":"","ip_address_aux":"","ip_port":0,"ip_port_anc":0,"ip_port_aux":0,"ip_protocol":0,"mac_address":"","master_board":-100,"other_info":"","serial_number":"","serial_port":"COM3","timeout":0}
+[2023-11-28 18:57:55.787] [board_logger] [trace] Board object created 0
+[2023-11-28 18:57:55.787] [board_logger] [info] opening port \\.\COM3
+[2023-11-28 18:58:00.972] [board_logger] [error] Make sure you provided correct port name and have permissions to open it(run with sudo/admin). Also, close all other apps using this port.
+[2023-11-28 18:59:34.288] [board_logger] [info] incoming json: {"file":"","file_anc":"","file_aux":"","ip_address":"","ip_address_anc":"","ip_address_aux":"","ip_port":0,"ip_port_anc":0,"ip_port_aux":0,"ip_protocol":0,"mac_address":"","master_board":-100,"other_info":"","serial_number":"","serial_port":"COM11","timeout":0}
+[2023-11-28 18:59:34.288] [board_logger] [trace] Board object created 0
+[2023-11-28 18:59:34.288] [board_logger] [info] opening port \\.\COM11
+[2023-11-28 18:59:34.306] [board_logger] [trace] port \\.\COM11 is open
+[2023-11-28 18:59:34.307] [board_logger] [trace] set port settings
+[2023-11-28 18:59:34.307] [board_logger] [debug] sending v to the board
+[2023-11-28 18:59:35.337] [board_logger] [debug] sending d to the board
+[2023-11-28 18:59:36.533] [board_logger] [trace] File Streamer, file: brainflow_data_exp--1_subject--1_throw_cue.csv, mods: w
+[2023-11-28 18:59:36.534] [board_logger] [debug] sending b to the board
+[2023-11-28 18:59:51.501] [board_logger] [debug] sending s to the board
+[2023-11-28 19:00:36.704] [board_logger] [info] incoming json: {"file":"","file_anc":"","file_aux":"","ip_address":"","ip_address_anc":"","ip_address_aux":"","ip_port":0,"ip_port_anc":0,"ip_port_aux":0,"ip_protocol":0,"mac_address":"","master_board":-100,"other_info":"","serial_number":"","serial_port":"COM11","timeout":0}
+[2023-11-28 19:00:36.705] [board_logger] [trace] Board object created 0
+[2023-11-28 19:00:36.705] [board_logger] [info] opening port \\.\COM11
+[2023-11-28 19:00:36.722] [board_logger] [trace] port \\.\COM11 is open
+[2023-11-28 19:00:36.723] [board_logger] [trace] set port settings
+[2023-11-28 19:00:36.723] [board_logger] [debug] sending v to the board
+[2023-11-28 19:00:37.744] [board_logger] [debug] sending d to the board
+[2023-11-28 19:00:38.940] [board_logger] [trace] File Streamer, file: brainflow_data_exp--1_subject--1_throw_cue.csv, mods: w
+[2023-11-28 19:00:38.940] [board_logger] [debug] sending b to the board
+[2023-11-28 19:02:51.048] [board_logger] [debug] sending s to the board
