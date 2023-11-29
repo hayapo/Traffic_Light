@@ -230,11 +230,11 @@ public class Kick_nocue_control : MonoBehaviour
 
         if (isTest)
         {
-            KeyEvent_file_path = $@"C:\Gitproject\Traffic_Light\Exp_Event_Record\exp_{ExpNumber}\test_{TestNumber}\subject_{SubjectNumber}\";
+            KeyEvent_file_path = $@"C:\GitProject\Traffic_Light\Exp_Event_Record\exp_{ExpNumber}\test_{TestNumber}\subject_{SubjectNumber}\";
         }
         else
         {
-            KeyEvent_file_path = $@"C:\Gitproject\Traffic_Light\Exp_Event_Record\exp_{ExpNumber}\subject_{SubjectNumber}\";
+            KeyEvent_file_path = $@"C:\GitProject\Traffic_Light\Exp_Event_Record\exp_{ExpNumber}\subject_{SubjectNumber}\";
         }
 
         string KeyEvent_file_name = "KeyEventAllTime.txt";
