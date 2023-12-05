@@ -233,7 +233,7 @@ public class Throw_nocue_control : MonoBehaviour
 
         if (isTest)
         {
-            KeyEvent_file_path = $@"C:\Gitproject\Traffic_Light\Exp_Event_Record\exp_{ExpNumber}\test_{TestNumber}\subject_{SubjectNumber}\";
+            KeyEvent_file_path = $@"C:\Gitproject\Traffic_Light\Exp_Event_Record\kick_vs_throw\test_{TestNumber}\sub_{SubjectNumber}\";
         }
         else
         {

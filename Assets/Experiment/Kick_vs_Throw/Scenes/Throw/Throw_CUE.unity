@@ -832,13 +832,12 @@ MonoBehaviour:
   Goal: {fileID: 834697967}
   BeepAudioSource: {fileID: 1405969126}
   BeepAudioClip: {fileID: 8300000, guid: bda9f20d8e8c15e4cbde4fef53e325f2, type: 3}
-  COM_PORT: COM3
+  COM_PORT: COM11
   isTest: 0
   useSyntheticBoard: 0
-  isDebug: 0
-  ExpNumber: 0
-  TestNumber: 0
-  SubjectNumber: 0
+  ExpNumber: 4
+  TestNumber: 4
+  SubjectNumber: 4
 --- !u!1 &1591908609
 GameObject:
   m_ObjectHideFlags: 0

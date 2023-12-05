@@ -726,7 +726,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: d1cd4df1b68c71a47ab7c3e6bf312ec1, type: 3}
+  m_audioClip: {fileID: 8300000, guid: bda9f20d8e8c15e4cbde4fef53e325f2, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -824,19 +824,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 279b6b87721ac3945b3f1bd8d55e52d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 3
   FEEDBACK_DELAY: 0.75
   Fixation: {fileID: 2042555236}
   Ball: {fileID: 1606081422}
   Floor: {fileID: 1383154481}
   BeepAudioSource: {fileID: 1405969126}
   BeepAudioClip: {fileID: 8300000, guid: bda9f20d8e8c15e4cbde4fef53e325f2, type: 3}
-  COM_PORT: COM3
+  COM_PORT: COM11
   isTest: 0
   useSyntheticBoard: 0
-  ExpNumber: 0
-  TestNumber: 0
-  SubjectNumber: 0
+  ExpNumber: 4
+  TestNumber: 4
+  SubjectNumber: 4
 --- !u!1 &1591908609
 GameObject:
   m_ObjectHideFlags: 0

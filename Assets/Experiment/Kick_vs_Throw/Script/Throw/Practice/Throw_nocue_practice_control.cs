@@ -132,7 +132,7 @@ public class Throw_nocue_practice_control : MonoBehaviour
             Fixation.SetActive(false);
             Ball.SetActive(true);
             Floor.SetActive(true);
-            Goal.SetActive(false);
+            Goal.SetActive(true);
 
             isWait = true;
 
