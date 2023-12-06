@@ -134,8 +134,6 @@ public class Kick_nocue_control : MonoBehaviour
 
         List<string> keyEventListAllTime = new();
 
-        isDelayFrame = true;
-
         board_shim.prepare_session();
         board_shim.start_stream(450000, $"file://{rawdataFileName}.csv:w");
 
@@ -144,6 +142,7 @@ public class Kick_nocue_control : MonoBehaviour
             timer = 0f;
             float trialDuration = 0.0f;
             int currentBlock = i / eachBlockTaskAmount; //現在のブロック( 0 - 5 )を計算
+            isDelayFrame = true;
 
             // float currentLoopTimer = 0f;
             // float totalDuration = 3.0f + 1.0f + NO_FEEDBACK_TRIAL_LIST[i] + 1.0f + 3.0f;
@@ -201,7 +200,7 @@ public class Kick_nocue_control : MonoBehaviour
                 {
                     if (isDelayFrame)
                     {
-                        yield return new WaitForFixedUpdate();
+                        yield return new WaitForSeconds(FEEDBACK_DELAY);
                         isDelayFrame = false;
                     }
                     Ball.transform.position += transform.forward * speed * Time.deltaTime;

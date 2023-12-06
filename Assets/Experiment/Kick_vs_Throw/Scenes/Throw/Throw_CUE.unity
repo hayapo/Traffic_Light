@@ -824,8 +824,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c7a84092e221a54e9a6c3c00b38dd82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
-  FEEDBACK_DELAY: 0.5
+  speed: 5
+  FEEDBACK_DELAY: 1.25
   Fixation: {fileID: 2042555236}
   Ball: {fileID: 1606081422}
   Floor: {fileID: 1196501993}
@@ -835,9 +835,9 @@ MonoBehaviour:
   COM_PORT: COM11
   isTest: 0
   useSyntheticBoard: 0
-  ExpNumber: 4
-  TestNumber: 4
-  SubjectNumber: 4
+  ExpNumber: 5
+  TestNumber: 5
+  SubjectNumber: 5
 --- !u!1 &1591908609
 GameObject:
   m_ObjectHideFlags: 0

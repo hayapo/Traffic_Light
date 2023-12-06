@@ -749,8 +749,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d1d7718969c04541aacc8b8d947187c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
-  FEEDBACK_DELAY: 0.75
+  speed: 7
+  FEEDBACK_DELAY: 1.5
   Fixation: {fileID: 2042555236}
   Ball: {fileID: 1606081422}
   Floor: {fileID: 1665387543}

@@ -75,7 +75,6 @@ public class Kick_cue_practice_control : MonoBehaviour
     private IEnumerator LoopExp()
     {
         float timer, totalTrialDuration = 0.0f;
-        isDelayFrame = true;
 
         board_shim.prepare_session();
         board_shim.start_stream(450000);
@@ -84,6 +83,7 @@ public class Kick_cue_practice_control : MonoBehaviour
         {
             // float currentLoopTimer = 0f;
             float perTrialDuration = 3.0f + 1.0f + WAIT_SECOND_PRACTICE + 1.0f + 3.0f;
+            isDelayFrame = true;
             Ball.transform.position = initalBallPosition;
 
             Debug.Log("===== Practice " + (i + 1) + " Started =====");

@@ -98,7 +98,6 @@ public class Kick_nocue_practice_control : MonoBehaviour
         // float startTime, ballDistance
         List<string> keyEventListAllTime = new();
 
-        isDelayFrame = true;
 
         board_shim.prepare_session();
         board_shim.start_stream(450000);
@@ -106,6 +105,7 @@ public class Kick_nocue_practice_control : MonoBehaviour
         for (int i = 0; i < trialAmount; i++)
         {
             timer = 0f;
+            isDelayFrame = true;
 
             // 試行の最初にボールの位置を,ボールの初期位置(Inspectorで指定した位置)にする
             Ball.transform.position = initalBallPosition;
@@ -158,7 +158,7 @@ public class Kick_nocue_practice_control : MonoBehaviour
 
                 if (isDelayFrame)
                 {
-                    yield return new WaitForFixedUpdate();
+                    yield return new WaitForSeconds(FEEDBACK_DELAY);
                     isDelayFrame = false;
                 }
                 Ball.transform.position += transform.forward * speed * Time.deltaTime;

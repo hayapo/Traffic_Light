@@ -116,7 +116,6 @@ public class Kick_cue_control : MonoBehaviour
     // Update is called once per frame
     private IEnumerator LoopExp()
     {
-        isDelayFrame = true;
 
         float timer, totalTrialDuration = 0.0f;
         //float startTime, ballDistance
@@ -135,6 +134,7 @@ public class Kick_cue_control : MonoBehaviour
             float durationMiTask = 0.0f;
             int currentBlock = i / eachBlockTaskAmount;
             float perTrialDuration = 3.0f + 1.0f + WAIT_SECOND_LIST[i] + 1.0f + 3.0f;
+            isDelayFrame = true;
 
             // 試行の最初にボールの位置を,ボールの初期位置(Inspectorで指定した位置)にする
             Ball.transform.position = initalBallPosition;
