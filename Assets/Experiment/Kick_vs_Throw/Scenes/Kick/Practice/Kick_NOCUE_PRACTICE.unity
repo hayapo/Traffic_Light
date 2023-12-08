@@ -1050,14 +1050,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ba3ccd698f82ec47ac8ddf5929cb9ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 7
-  FEEDBACK_DELAY: 0.75
+  speed: 9
+  FEEDBACK_DELAY: 1.5
   Fixation: {fileID: 2042555236}
   Ball: {fileID: 1606081422}
   Floor: {fileID: 969702054}
   BeepAudioSource: {fileID: 1405969126}
   BeepAudioClip: {fileID: 8300000, guid: bda9f20d8e8c15e4cbde4fef53e325f2, type: 3}
-  COM_PORT: COM11
+  COM_PORT: COM3
   isTest: 1
   useSyntheticBoard: 1
   isDebug: 0
