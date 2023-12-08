@@ -1,0 +1,12 @@
+[2023-12-08 10:29:20.568] [board_logger] [info] incoming json: {"file":"","file_anc":"","file_aux":"","ip_address":"","ip_address_anc":"","ip_address_aux":"","ip_port":0,"ip_port_anc":0,"ip_port_aux":0,"ip_protocol":0,"mac_address":"","master_board":-100,"other_info":"","serial_number":"","serial_port":"COM11","timeout":0}
+[2023-12-08 10:29:20.568] [board_logger] [trace] Board object created 0
+[2023-12-08 10:29:20.568] [board_logger] [info] opening port \\.\COM11
+[2023-12-08 10:29:20.586] [board_logger] [trace] port \\.\COM11 is open
+[2023-12-08 10:29:20.587] [board_logger] [trace] set port settings
+[2023-12-08 10:29:20.588] [board_logger] [debug] sending v to the board
+[2023-12-08 10:29:21.625] [board_logger] [debug] sending d to the board
+[2023-12-08 10:29:22.822] [board_logger] [trace] File Streamer, file: brainflow_data_throw-nocue_sub-6.csv, mods: w
+[2023-12-08 10:29:22.823] [board_logger] [debug] sending b to the board
+[2023-12-08 10:35:09.946] [board_logger] [debug] sending s to the board
+[2023-12-08 10:37:18.045] [board_logger] [info] incoming json: {"file":"","file_anc":"","file_aux":"","ip_address":"","ip_address_anc":"","ip_address_aux":"","ip_port":0,"ip_port_anc":0,"ip_port_aux":0,"ip_protocol":0,"mac_address":"","master_board":-100,"other_info":"","serial_number":"","serial_port":"COM11","timeout":0}
+[2023-12-08 10:37:18.045] [board_logger] [trace] Board object created -1

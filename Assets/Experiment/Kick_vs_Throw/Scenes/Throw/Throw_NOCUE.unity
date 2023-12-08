@@ -1051,7 +1051,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  FEEDBACK_DELAY: 1.5
+  FEEDBACK_DELAY: 0.75
   Fixation: {fileID: 2042555236}
   Ball: {fileID: 1606081422}
   Floor: {fileID: 529185936}
@@ -1062,9 +1062,9 @@ MonoBehaviour:
   isTest: 0
   useSyntheticBoard: 0
   isDebug: 0
-  ExpNumber: 5
-  SubjectNumber: 5
-  TestNumber: 5
+  ExpNumber: 6
+  SubjectNumber: 6
+  TestNumber: 6
 --- !u!1 &1591908609
 GameObject:
   m_ObjectHideFlags: 0
