@@ -986,9 +986,9 @@ MonoBehaviour:
   isTest: 0
   useSyntheticBoard: 0
   isDebug: 0
-  ExpNumber: 6
-  SubjectNumber: 6
-  TestNumber: 6
+  ExpNumber: 1
+  SubjectNumber: 1
+  TestNumber: 1
 --- !u!1001 &1435919936
 PrefabInstance:
   m_ObjectHideFlags: 0
